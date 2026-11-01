@@ -1,0 +1,6 @@
+id,timestamp,latitude,longitude,frp,confidence,source
+FIRMS_PUN_01,2024-10-29T14:30:00Z,30.85,75.82,45.2,88.0,synthetic_firms_viirs
+FIRMS_PUN_02,2024-10-30T13:45:00Z,30.62,76.11,62.8,92.0,synthetic_firms_viirs
+FIRMS_PUN_03,2024-10-31T14:15:00Z,30.41,76.45,85.5,95.0,synthetic_firms_viirs
+FIRMS_HAR_01,2024-10-31T15:20:00Z,29.85,76.88,38.0,82.0,synthetic_firms_viirs
+FIRMS_PUN_04,2024-11-01T13:50:00Z,30.73,75.95,54.1,90.0,synthetic_firms_viirs

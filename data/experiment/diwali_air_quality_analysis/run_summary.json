@@ -1,0 +1,52 @@
+{
+  "source_zip": "archive (4).zip",
+  "source_csv": "station_hour.csv",
+  "raw_rows": 2589083,
+  "modeling_subset_rows": 705691,
+  "modeling_station_count": 15,
+  "raw_columns": 16,
+  "date_min": "2015-01-01 01:00:00",
+  "date_max": "2020-07-01 00:00:00",
+  "stations": 15,
+  "selected_station_ids": [
+    "DL002",
+    "DL019",
+    "DL021",
+    "DL028",
+    "DL031",
+    "GJ001",
+    "HR014",
+    "KA003",
+    "KA009",
+    "TG005",
+    "TN001",
+    "TN003",
+    "TN004",
+    "UP012",
+    "UP014"
+  ],
+  "pm25_nonmissing_rows": 527868,
+  "pm25_nonmissing_pct": 74.80157746095671,
+  "valid_next_hour_target_rows": 527865,
+  "train_sample_rows": 100000,
+  "validation_rows": 111375,
+  "test_rows": 120446,
+  "training_strategy": "Chronological: train <=2017; validate on 2018 and estimate ensemble weights; test on 2019 without refitting. Model uses 15 stations with the most non-missing PM2.5 observations; training fit capped at 100,000 rows; all validation/test rows in selected stations evaluated.",
+  "target": "PM2.5 at exactly the next hourly timestamp for the same station",
+  "diwali_dates": {
+    "2015": "2015-11-11",
+    "2016": "2016-10-30",
+    "2017": "2017-10-19",
+    "2018": "2018-11-07",
+    "2019": "2019-10-27",
+    "2020": "2020-11-14"
+  },
+  "weather_fire_status": "Not merged: uploaded archive contains no weather, traffic, active-fire or satellite imagery data. The analysis therefore tests pollution-history and calendar features only.",
+  "important_caveats": [
+    "The dataset ends 2020-07-01 and cannot validate Diwali 2020 or 2026.",
+    "StationCode is an encoded station identifier and should not be interpreted as a numeric spatial coordinate.",
+    "Diwali dates are calendar features; Diwali-window evaluation depends on observations available in each year.",
+    "Lag features are based on available station records; exact time-gap checks are applied to explicit lags and next-hour targets.",
+    "Model scores are empirical on this split and do not guarantee generalization to new cities or future years."
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DEL_ANAND_VIHAR",
+        "name": "Anand Vihar",
+        "city": "Delhi",
+        "zone": "East Delhi",
+        "type": "Transit Hub & Inter-state Terminal",
+        "baseline_pm25": 160.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.305, 28.640],
+            [77.325, 28.640],
+            [77.325, 28.655],
+            [77.305, 28.655],
+            [77.305, 28.640]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DEL_PUNJABI_BAGH",
+        "name": "Punjabi Bagh",
+        "city": "Delhi",
+        "zone": "West Delhi",
+        "type": "Mixed Residential & Arterial Ring Road",
+        "baseline_pm25": 140.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.120, 28.665],
+            [77.142, 28.665],
+            [77.142, 28.682],
+            [77.120, 28.682],
+            [77.120, 28.665]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DEL_RK_PURAM",
+        "name": "R.K. Puram",
+        "city": "Delhi",
+        "zone": "South Delhi",
+        "type": "Institutional & Residential",
+        "baseline_pm25": 130.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.175, 28.555],
+            [77.198, 28.555],
+            [77.198, 28.572],
+            [77.175, 28.572],
+            [77.175, 28.555]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DEL_LODHI_ROAD",
+        "name": "Lodhi Road",
+        "city": "Delhi",
+        "zone": "Central Delhi",
+        "type": "Green & Government Institutional",
+        "baseline_pm25": 105.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.218, 28.583],
+            [77.238, 28.583],
+            [77.238, 28.601],
+            [77.218, 28.601],
+            [77.218, 28.583]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PUN_PATIALA_THAPAR",
+        "name": "Thapar Campus, Patiala",
+        "city": "Patiala",
+        "zone": "Punjab",
+        "type": "University Campus & Regional Plain",
+        "baseline_pm25": 95.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.350, 30.345],
+            [76.380, 30.345],
+            [76.380, 30.368],
+            [76.350, 30.368],
+            [76.350, 30.345]
+          ]
+        ]
+      }
+    }
+  ]
+}

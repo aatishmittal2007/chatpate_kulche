@@ -1,0 +1,97 @@
+{
+  "name": "Workflow D: NASA FIRMS Satellite Fire Detections Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyXHours",
+              "value": 6
+            }
+          ]
+        }
+      },
+      "id": "node-cron-firms",
+      "name": "6-Hour Fire Ingestion Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/sources/status",
+        "options": {}
+      },
+      "id": "node-get-firms-status",
+      "name": "Fetch Regional Active Fire Detections",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst fires = data.active_fires || [];\nconst highConf = fires.filter(f => f.confidence >= 50);\nreturn [{\n  json: {\n    sync_timestamp: new Date().toISOString(),\n    total_fires_synced: fires.length,\n    high_confidence_fires: highConf.length,\n    average_frp_mw: highConf.reduce((acc, f) => acc + (f.frp || 0), 0) / (highConf.length || 1)\n  }\n}];"
+      },
+      "id": "node-filter-confidence",
+      "name": "Filter High Confidence Agricultural Pixels",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/api/automation/callback/firms-sync",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "node-log-firms-sync",
+      "name": "Record Regional Fire Burden Update",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "6-Hour Fire Ingestion Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Regional Active Fire Detections",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Regional Active Fire Detections": {
+      "main": [
+        [
+          {
+            "node": "Filter High Confidence Agricultural Pixels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter High Confidence Agricultural Pixels": {
+      "main": [
+        [
+          {
+            "node": "Record Regional Fire Burden Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "name": "Workflow B: Multi-Horizon Forecasting & Cache Refresh",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "trigger-forecast",
+        "options": {}
+      },
+      "id": "node-webhook-forecast",
+      "name": "Webhook: Ingestion Complete Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [220, 280]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/api/model/train",
+        "options": {}
+      },
+      "id": "node-retrain-eval",
+      "name": "Run Model Calibration & Evaluation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 280]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/forecast/latest",
+        "options": {}
+      },
+      "id": "node-refresh-cache",
+      "name": "Generate & Cache Horizon Forecasts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "const forecasts = $input.first().json;\nreturn [{ json: { status: 'forecasts_updated', count: Array.isArray(forecasts) ? forecasts.length : 0, timestamp: new Date().toISOString() } }];"
+      },
+      "id": "node-summarize",
+      "name": "Format Forecast Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 280]
+    }
+  ],
+  "connections": {
+    "Webhook: Ingestion Complete Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run Model Calibration & Evaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Model Calibration & Evaluation": {
+      "main": [
+        [
+          {
+            "node": "Generate & Cache Horizon Forecasts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate & Cache Horizon Forecasts": {
+      "main": [
+        [
+          {
+            "node": "Format Forecast Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

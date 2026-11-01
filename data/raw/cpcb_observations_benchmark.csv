@@ -1,0 +1,285 @@
+timestamp,location_id,station_name,latitude,longitude,pollutant,value,unit,source,quality_flag
+2024-10-24T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,152.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,266.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,192.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,336.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,167.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,292.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,211.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,369.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,182.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,319.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,230.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,403.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,190.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,332.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,240.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,420.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,197.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,345.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,249.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,436.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,334.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,585.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,334.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,585.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,334.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,585.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,729.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,1276.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,729.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,1276.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,516.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,904.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,516.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,904.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,319.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,558.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,403.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,705.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,403.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,705.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,258.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,452.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,326.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,571.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,235.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,412.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,297.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,520.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,190.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,332.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,240.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,420.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,167.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,292.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,211.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM10,369.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,133.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,232.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,168.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,294.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,146.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,256.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,184.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,323.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,159.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,279.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,201.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,352.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,166.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,290.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,210.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,367.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,172.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,302.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,218.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,382.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,292.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,512.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,292.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,512.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,292.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,512.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,638.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,1117.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,638.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,1117.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,452.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,791.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,452.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,791.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,279.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,488.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,352.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,617.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,352.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,617.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,226.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,395.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,285.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,499.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,206.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,360.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,260.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,455.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,166.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,290.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,210.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,367.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,146.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,256.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM2.5,184.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_PUNJABI_BAGH,Punjabi Bagh,28.674,77.131,PM10,323.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,123.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,216.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,156.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,273.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,135.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,237.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,171.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,300.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,148.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,259.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,187.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,327.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,154.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,270.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,195.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,341.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,160.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,280.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,202.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,354.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,271.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,475.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,271.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,475.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,271.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,475.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,592.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,1037.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,592.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,1037.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,419.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,734.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,419.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,734.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,259.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,453.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,327.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,573.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,327.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,573.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,209.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,367.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,265.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,464.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,191.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,334.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,241.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,423.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,154.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,270.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,195.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,341.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,135.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,237.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM2.5,171.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_RK_PURAM,R.K. Puram,28.5632,77.1869,PM10,300.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,99.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,174.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,126.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,220.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,109.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,192.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,138.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,242.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,119.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,209.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,151.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,264.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,124.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,218.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,157.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,275.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,129.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,227.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,163.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,286.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,219.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,384.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,219.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,384.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,219.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,384.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,478.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,837.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,478.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,837.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,339.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,593.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,339.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,593.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,209.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,366.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,264.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,463.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,264.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,463.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,169.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,296.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,214.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,374.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,154.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,270.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,195.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,341.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,124.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,218.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,157.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,275.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,109.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,192.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM2.5,138.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,DEL_LODHI_ROAD,Lodhi Road,28.5918,77.2273,PM10,242.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,90.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,157.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,114.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,199.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,99.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,173.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,125.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-26T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,219.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,108.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,189.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,136.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-28T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,239.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,112.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,197.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,142.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-29T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,249.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,117.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,205.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,148.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-30T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,259.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,198.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T00:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,347.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,198.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,347.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,198.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T12:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,347.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,433.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,758.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,433.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T21:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,758.1,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,306.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T00:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,536.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,306.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,536.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,189.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T12:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,331.6,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,239.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,418.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,239.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-01T21:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,418.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,153.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,268.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,193.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-02T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,339.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,139.9,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,244.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,176.7,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-03T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,309.2,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,112.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,197.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,142.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-05T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,249.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,99.3,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T06:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,173.8,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM2.5,125.4,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-11-07T18:00:00+00:00,PUN_PATIALA_THAPAR,"Thapar Campus, Patiala",30.3564,76.3647,PM10,219.5,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-24T06:00:00+00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,152.0,ug/m3,synthetic_cpcb_benchmark,synthetic_benchmark
+2024-10-31T06:00:00Z,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,,ug/m3,test_invalid,test
+2024-10-31T07:00:00Z,DEL_ANAND_VIHAR,Anand Vihar,98.6469,77.316,PM2.5,150.0,ug/m3,test_invalid,test
+2024-10-31T08:00:00Z,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.316,PM2.5,150.0,parts_per_million,test_invalid,test

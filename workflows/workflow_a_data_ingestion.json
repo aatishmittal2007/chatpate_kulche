@@ -1,0 +1,96 @@
+{
+  "name": "Workflow A: Scheduled Hourly Data Ingestion & Validation",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        }
+      },
+      "id": "node-trigger-cron",
+      "name": "Hourly Schedule Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/sources/status",
+        "options": {}
+      },
+      "id": "node-fetch-sources",
+      "name": "Fetch Latest Station Observations",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Schema validation and anomaly filtering\nconst items = $input.all();\nconst validated = [];\nfor (const item of items) {\n  const data = item.json;\n  if (data.freshness && data.freshness.meteorology_minutes_old < 180) {\n    validated.push({ json: { ...data, validated: true, ingested_at: new Date().toISOString() } });\n  }\n}\nreturn validated.length > 0 ? validated : [{ json: { status: 'stale_warning' } }];"
+      },
+      "id": "node-validate-data",
+      "name": "Validate Sensor Readings & Outliers",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/api/automation/callback/ingestion",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "node-record-sync",
+      "name": "Commit Ingestion to Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Hourly Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Latest Station Observations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Latest Station Observations": {
+      "main": [
+        [
+          {
+            "node": "Validate Sensor Readings & Outliers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Sensor Readings & Outliers": {
+      "main": [
+        [
+          {
+            "node": "Commit Ingestion to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

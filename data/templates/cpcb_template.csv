@@ -1,0 +1,11 @@
+timestamp,location_id,station_name,latitude,longitude,pollutant,value,unit,source,quality_flag
+2024-10-31 00:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM2.5,185.4,ug/m3,cpcb_station,valid
+2024-10-31 00:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM10,320.1,ug/m3,cpcb_station,valid
+2024-10-31 06:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM2.5,210.8,ug/m3,cpcb_station,valid
+2024-10-31 06:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM10,365.0,ug/m3,cpcb_station,valid
+2024-10-31 12:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM2.5,230.5,ug/m3,cpcb_station,valid
+2024-10-31 12:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM10,395.2,ug/m3,cpcb_station,valid
+2024-10-31 18:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM2.5,410.2,ug/m3,cpcb_station,valid
+2024-10-31 18:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM10,680.0,ug/m3,cpcb_station,valid
+2024-10-31 21:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM2.5,580.6,ug/m3,cpcb_station,valid
+2024-10-31 21:00:00,DEL_ANAND_VIHAR,Anand Vihar,28.6469,77.3160,PM10,950.4,ug/m3,cpcb_station,valid

@@ -1,0 +1,5 @@
+id,timestamp,latitude,longitude,frp,confidence,source
+FIRMS_2024_01,2024-10-31 13:45:00,30.850,75.820,45.2,88.0,nasa_firms_viirs
+FIRMS_2024_02,2024-10-31 14:15:00,30.620,76.110,68.4,92.0,nasa_firms_viirs
+FIRMS_2024_03,2024-10-31 15:20:00,30.410,76.450,85.5,95.0,nasa_firms_viirs
+FIRMS_2024_04,2024-10-31 15:50:00,29.850,76.880,38.0,82.0,nasa_firms_viirs

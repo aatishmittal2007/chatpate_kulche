@@ -1,0 +1,5 @@
+Model,Validation_Ensemble_Weight
+RandomForest,0.0
+XGBoost,0.05
+LightGBM,0.45
+Residual_XGBoost,0.49999999999999994

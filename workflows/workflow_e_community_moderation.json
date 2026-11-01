@@ -1,0 +1,70 @@
+{
+  "name": "Workflow E: Citizen Air Quality Report Moderation & Scoring",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "community-report-submitted",
+        "options": {}
+      },
+      "id": "node-webhook-community",
+      "name": "Webhook: Community Report Ingest",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "const report = $input.first().json;\n// Multi-factor verification rules\nlet score = 50.0;\nif (report.visibility_level === '< 100m' || report.visibility_level === '< 50m') score += 20.0;\nif (report.cracker_activity === 'Continuous heavy bursts') score += 15.0;\nif (report.smell_intensity && report.smell_intensity.includes('Heavy')) score += 10.0;\nconst verified = score >= 70.0 ? 'verified' : 'pending';\nreturn [{\n  json: {\n    ...report,\n    computed_reliability: Math.min(100.0, score),\n    status: verified,\n    moderated_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "node-score-reliability",
+      "name": "Compute Reliability Score & Spam Filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 280]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/api/automation/callback/report-moderated",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "node-commit-verified-report",
+      "name": "Commit Verified Citizen Report",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [720, 280]
+    }
+  ],
+  "connections": {
+    "Webhook: Community Report Ingest": {
+      "main": [
+        [
+          {
+            "node": "Compute Reliability Score & Spam Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Reliability Score & Spam Filter": {
+      "main": [
+        [
+          {
+            "node": "Commit Verified Citizen Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

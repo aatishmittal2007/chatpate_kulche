@@ -1,0 +1,97 @@
+{
+  "name": "Workflow C: Critical Pollution Threshold Alert Dispatcher",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyXMinutes",
+              "value": 30
+            }
+          ]
+        }
+      },
+      "id": "node-timer-alerts",
+      "name": "30-Minute Check Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/forecast/latest",
+        "options": {}
+      },
+      "id": "node-get-forecasts",
+      "name": "Query Active 6h/24h Forecasts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const forecasts = $input.first().json;\nconst severeAlerts = [];\nif (Array.isArray(forecasts)) {\n  for (const f of forecasts) {\n    if (f.point_forecast >= 350) {\n      severeAlerts.push({\n        location_id: f.location_id,\n        pollutant: f.pollutant,\n        horizon_hours: f.horizon_hours,\n        predicted_concentration: f.point_forecast,\n        severity_category: f.point_forecast >= 400 ? 'Hazardous (Severe+)' : 'Severe',\n        health_advisory: 'Immediate N95 masking required; keep sensitive groups indoors.',\n        alert_issued_at: new Date().toISOString()\n      });\n    }\n  }\n}\nreturn severeAlerts.length > 0 ? severeAlerts.map(a => ({ json: a })) : [{ json: { status: 'no_severe_crossings' } }];"
+      },
+      "id": "node-filter-severe",
+      "name": "Filter Severe & Hazardous Thresholds",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/api/automation/callback/alerts",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "node-dispatch-notification",
+      "name": "Dispatch Emergency Alert Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [920, 300]
+    }
+  ],
+  "connections": {
+    "30-Minute Check Trigger": {
+      "main": [
+        [
+          {
+            "node": "Query Active 6h/24h Forecasts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Active 6h/24h Forecasts": {
+      "main": [
+        [
+          {
+            "node": "Filter Severe & Hazardous Thresholds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Severe & Hazardous Thresholds": {
+      "main": [
+        [
+          {
+            "node": "Dispatch Emergency Alert Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.npm
+*.tsbuildinfo
+
+# SQLite databases & temp files
+*.db-journal
+*.sqlite3-journal
+
+# Environment & IDE
+.env
+.env.local
+.vscode/
+.idea/
+.DS_Store
+
+# Models & Reports cache (keep directory structure)
+models/*.joblib
+!models/.gitkeep
+reports/*.json
+!reports/.gitkeep

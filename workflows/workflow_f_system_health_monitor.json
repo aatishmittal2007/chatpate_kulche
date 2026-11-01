@@ -1,0 +1,93 @@
+{
+  "name": "Workflow F: System Health, WAL Integrity & Data Staleness Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyXMinutes",
+              "value": 15
+            }
+          ]
+        }
+      },
+      "id": "node-health-cron",
+      "name": "15-Minute Uptime Heartbeat",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [240, 280]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/health",
+        "options": {}
+      },
+      "id": "node-check-health",
+      "name": "Probe API & Database Health",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 280]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/api/data/quality",
+        "options": {}
+      },
+      "id": "node-check-quality",
+      "name": "Check Freshness & Station Coverage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "const qData = $input.first().json;\nconst issues = [];\nif (qData.station_coverage) {\n  for (const s of qData.station_coverage) {\n    if (s.freshness_minutes > 180) {\n      issues.push(`Station ${s.location_id} stale by ${s.freshness_minutes} minutes`);\n    }\n  }\n}\nreturn [{\n  json: {\n    system_status: issues.length === 0 ? 'optimal' : 'degraded',\n    issues_detected: issues,\n    evaluated_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "node-evaluate-sla",
+      "name": "Evaluate Operational Health SLA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 280]
+    }
+  ],
+  "connections": {
+    "15-Minute Uptime Heartbeat": {
+      "main": [
+        [
+          {
+            "node": "Probe API & Database Health",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Probe API & Database Health": {
+      "main": [
+        [
+          {
+            "node": "Check Freshness & Station Coverage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Freshness & Station Coverage": {
+      "main": [
+        [
+          {
+            "node": "Evaluate Operational Health SLA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
