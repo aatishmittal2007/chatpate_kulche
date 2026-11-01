@@ -42,10 +42,32 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
+            <Compass className="w-5 h-5 text-[#133E26]" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Local Forecasting Engine Explorer
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Operational
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Targeted multi-horizon PM2.5 and PM10 predictions powered by hybrid ensemble weighting
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Selector Control Bar */}
       <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
-        <h2 className="text-base font-bold text-[#0D2818] tracking-tight mb-4">
-          Local Forecasting Engine Explorer
+        <h2 className="text-sm font-bold text-[#0D2818] tracking-tight mb-4">
+          Forecast Parameters &amp; Neighborhood Configuration
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

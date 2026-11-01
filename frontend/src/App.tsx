@@ -13,6 +13,7 @@ import { AnalyticsView } from './pages/AnalyticsView';
 import { CommunityView } from './pages/CommunityView';
 import { BloomsView } from './pages/BloomsView';
 import { AutomationView } from './pages/AutomationView';
+import { ModulesView } from './pages/ModulesView';
 import { PollutionMap } from './maps/PollutionMap';
 import { Station, SystemStatus, FireDetection, RoadCorridor, CommunityReport } from './types';
 import {
@@ -111,6 +112,8 @@ export default function App() {
               />
             </div>
           )}
+
+          {tab === 'modules' && <ModulesView onNavigate={setTab} />}
 
           {tab === 'analytics' && <AnalyticsView />}
 

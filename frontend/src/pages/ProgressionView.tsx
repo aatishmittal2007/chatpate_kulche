@@ -33,32 +33,41 @@ export const ProgressionView: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header Banner */}
-      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-base font-bold text-[#0D2818] tracking-tight flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-[#133E26]" />
-            Diwali-Relative Historical Pollution Progression
-          </h2>
-          <p className="text-xs text-[#4A6B56] mt-0.5">
-            Synchronized calendar alignment across multiple years: Day -30 to Day +30 relative to festival date
-          </p>
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
+            <Calendar className="w-5 h-5 text-[#133E26]" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Diwali-Relative Historical Pollution Progression
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Verified Data
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Synchronized calendar alignment across multiple years: Day -30 to Day +30 relative to festival date
+            </p>
+          </div>
         </div>
 
         {/* Pollutant selector */}
-        <div className="flex rounded border border-[#D1DFD4] p-0.5 bg-[#F8FAF8] text-xs">
+        <div className="flex rounded-xl border border-[#D1DFD4] p-1 bg-[#FAF9F5] text-xs">
           <button
             onClick={() => setPollutant('PM2.5')}
-            className={`px-3 py-1 rounded font-medium ${
-              pollutant === 'PM2.5' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              pollutant === 'PM2.5' ? 'bg-[#133E26] text-white shadow-xs' : 'text-[#4A6B56] hover:bg-white'
             }`}
           >
             PM2.5
           </button>
           <button
             onClick={() => setPollutant('PM10')}
-            className={`px-3 py-1 rounded font-medium ${
-              pollutant === 'PM10' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              pollutant === 'PM10' ? 'bg-[#133E26] text-white shadow-xs' : 'text-[#4A6B56] hover:bg-white'
             }`}
           >
             PM10

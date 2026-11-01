@@ -47,17 +47,26 @@ export const EvaluationView: React.FC = () => {
   return (
     <div className="space-y-8 pb-12">
       
-      {/* Title & Introduction */}
-      <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs">
-        <div className="flex items-center gap-2 mb-2">
-          <ShieldCheck className="w-5 h-5 text-[#133E26]" />
-          <h2 className="text-xl font-bold text-[#0D2818] tracking-tight">
-            Official Experiment Evaluation &amp; Multi-Model Benchmarking
-          </h2>
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
+            <ShieldCheck className="w-5 h-5 text-[#133E26]" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Official Experiment Evaluation &amp; Multi-Model Benchmarking
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Verified ML
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Scientific audit of model architectures evaluated on 705,691 rows across 15 CAAQMS monitoring stations from 2015 to 2020
+            </p>
+          </div>
         </div>
-        <p className="text-xs sm:text-sm text-[#4A6B56] leading-relaxed max-w-3xl">
-          Scientific audit of model architectures evaluated on 705,691 subset rows across 15 CAAQMS monitoring stations from 2015 to July 2020. Evaluated with chronological train/validation/test splits with zero future leakage.
-        </p>
       </div>
 
       {/* =========================================================

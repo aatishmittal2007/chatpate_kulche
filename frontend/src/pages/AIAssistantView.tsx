@@ -82,25 +82,32 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Top Banner */}
-      <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <div className="flex items-center gap-2">
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
             <Bot className="w-5 h-5 text-[#133E26]" />
-            <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
-              Qwen 3.8 Air Quality Intelligence &amp; Prediction Explanation
-            </h2>
           </div>
-          <p className="text-xs text-[#4A6B56] mt-0.5">
-            Backend-grounded OpenAI-compatible chat proxy with zero hallucination and mathematical feature attribution
-          </p>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Qwen 3.8 Air Quality Intelligence &amp; Prediction Explanation
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Qwen 3.8 LLM
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Backend-grounded OpenAI-compatible chat proxy with zero hallucination and mathematical feature attribution
+            </p>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <select
             value={selectedStationId}
             onChange={(e) => onSelectStation(e.target.value)}
-            className="text-xs p-2 rounded border border-[#D1DFD4] bg-[#F8FAF8] font-medium"
+            className="text-xs py-2 px-3 rounded-xl border border-[#D1DFD4] bg-[#FAF9F5] font-semibold text-[#0D2818] focus:outline-none focus:border-[#133E26]"
           >
             {stations.map((s) => (
               <option key={s.id} value={s.id}>{s.name} ({s.city})</option>
@@ -109,13 +116,13 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
 
           <button
             onClick={() => setUseReasoning(!useReasoning)}
-            className={`px-3 py-1.5 rounded text-xs font-semibold border transition-colors flex items-center gap-1.5 ${
+            className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 cursor-pointer shadow-xs ${
               useReasoning
-                ? 'bg-[#133E26] text-white border-[#1B4332]'
-                : 'bg-[#F8FAF8] text-[#4A6B56] border-[#D1DFD4] hover:bg-[#EBF3EA]'
+                ? 'bg-[#133E26] text-white border-[#133E26]'
+                : 'bg-[#FAF9F5] text-[#4A6B56] border-[#D1DFD4] hover:bg-[#EBF3EA]'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>{useReasoning ? 'qwen3.8-max (Deep Reasoning)' : 'qwen3.8-flash (Fast)'}</span>
           </button>
         </div>
@@ -123,7 +130,7 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Interactive Chat (2/3 width) */}
-        <div className="lg:col-span-2 bg-white rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col h-[640px]">
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col h-[640px] overflow-hidden">
           {/* Quick Prompts Bar */}
           <div className="p-3 border-b border-[#EBF3EA] bg-[#F8FAF8] flex gap-2 overflow-x-auto text-xs">
             <button

@@ -63,24 +63,33 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Title & Warning Header */}
-      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
-        <div className="flex items-center gap-2 mb-1">
-          <Sliders className="w-4 h-4 text-[#133E26]" />
-          <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
-            Hypothetical Environmental Scenario Laboratory
-          </h2>
-        </div>
-        <p className="text-xs text-[#4A6B56]">
-          Simulate model-conditioned sensitivity under hypothetical meteorological and anthropogenic perturbations.
-        </p>
-
-        {/* Mandatory Causal Caveat Banner */}
-        <div className="mt-3 bg-[#FEF3C7] border border-[#FCD34D] text-[#B45309] p-3 rounded text-xs flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-          <div>
-            <strong className="font-semibold">Strict Scientific Distinction:</strong> Outputs represent statistical model sensitivity conditioned on historical correlations. They do <em>NOT</em> represent validated hydrodynamic physical causal simulations.
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
+            <Sliders className="w-5 h-5 text-[#133E26]" />
           </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Hypothetical Environmental Scenario Laboratory
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Sensitivity Lab
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Simulate statistical model sensitivity under hypothetical meteorological and anthropogenic perturbations
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mandatory Causal Caveat Banner */}
+      <div className="bg-amber-50 border border-amber-200 text-amber-800 p-3.5 rounded-2xl text-xs flex items-start gap-2.5 shadow-xs">
+        <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-700" />
+        <div className="leading-relaxed">
+          <strong className="font-bold">Strict Scientific Distinction:</strong> Outputs represent statistical model sensitivity conditioned on historical correlations. They do <em>NOT</em> represent validated hydrodynamic physical causal simulations.
         </div>
       </div>
 

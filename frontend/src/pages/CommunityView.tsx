@@ -78,23 +78,30 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
 
   return (
     <div className="space-y-6">
-      {/* Top Banner */}
-      <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <div className="flex items-center gap-2">
+      {/* Standardized Module Header */}
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26] shrink-0">
             <Users className="w-5 h-5 text-[#133E26]" />
-            <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
-              Citizen Air Quality Reports &amp; Ground Verification
-            </h2>
           </div>
-          <p className="text-xs text-[#4A6B56] mt-0.5">
-            Crowdsourced festival pollution observations validated via official station proximity &amp; spatial clustering
-          </p>
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-black tracking-tight text-[#133E26] font-sans">
+                Citizen Air Quality Reports &amp; Ground Verification
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-[#EBF3EA] text-[#133E26] border border-[#85A98F]">
+                Crowdsourced
+              </span>
+            </div>
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Crowdsourced festival pollution observations validated via official station proximity &amp; spatial clustering
+            </p>
+          </div>
         </div>
 
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2 bg-[#133E26] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded flex items-center gap-1.5 transition-colors shadow-2xs"
+          className="px-4 py-2 bg-[#133E26] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-xs cursor-pointer whitespace-nowrap"
         >
           <Plus className="w-4 h-4" />
           <span>Submit Ground Observation</span>
