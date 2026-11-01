@@ -133,7 +133,9 @@ class QwenService:
                         f"{self.base_url}/chat/completions",
                         headers={
                             "Authorization": f"Bearer {self.api_key}",
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "HTTP-Referer": "http://localhost:8000",
+                            "X-Title": "Diwali AirSense"
                         },
                         json={
                             "model": model_name,
@@ -358,9 +360,11 @@ class QwenService:
             conn.close()
 
     def check_health(self) -> Dict[str, Any]:
+        provider = "OpenRouter" if "openrouter" in self.base_url else "DashScope"
         return {
             "status": "ready",
             "api_key_configured": self.is_configured(),
+            "provider": provider,
             "base_url": self.base_url,
             "models": {
                 "reasoning": self.reasoning_model,
