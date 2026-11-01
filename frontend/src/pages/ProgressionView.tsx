@@ -34,10 +34,10 @@ export const ProgressionView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-base font-bold text-[#0D2818] tracking-tight flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-[#1B4332]" />
+            <Calendar className="w-4 h-4 text-[#133E26]" />
             Diwali-Relative Historical Pollution Progression
           </h2>
           <p className="text-xs text-[#4A6B56] mt-0.5">
@@ -50,7 +50,7 @@ export const ProgressionView: React.FC = () => {
           <button
             onClick={() => setPollutant('PM2.5')}
             className={`px-3 py-1 rounded font-medium ${
-              pollutant === 'PM2.5' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+              pollutant === 'PM2.5' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
             }`}
           >
             PM2.5
@@ -58,7 +58,7 @@ export const ProgressionView: React.FC = () => {
           <button
             onClick={() => setPollutant('PM10')}
             className={`px-3 py-1 rounded font-medium ${
-              pollutant === 'PM10' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+              pollutant === 'PM10' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
             }`}
           >
             PM10
@@ -68,7 +68,7 @@ export const ProgressionView: React.FC = () => {
 
       {/* Period Summary Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs">
           <div className="text-[11px] font-semibold text-[#4A6B56] uppercase">Pre-Diwali Baseline (Day -30 to -1)</div>
           <div className="text-2xl font-bold font-mono text-[#0D2818] mt-2">
             {preMedian} <span className="text-xs font-normal text-[#4A6B56]">µg/m³</span>
@@ -88,7 +88,7 @@ export const ProgressionView: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs">
           <div className="text-[11px] font-semibold text-[#4A6B56] uppercase">Post-Diwali Dispersion (Day +1 to +30)</div>
           <div className="text-2xl font-bold font-mono text-[#0D2818] mt-2">
             {postMedian} <span className="text-xs font-normal text-[#4A6B56]">µg/m³</span>
@@ -108,7 +108,7 @@ export const ProgressionView: React.FC = () => {
 
       {/* Scientific Notice Card */}
       <div className="bg-[#F8FAF8] border border-[#D1DFD4] rounded p-4 text-xs text-[#0D2818]">
-        <div className="flex items-center gap-2 font-bold text-[#1B4332] mb-1.5">
+        <div className="flex items-center gap-2 font-bold text-[#133E26] mb-1.5">
           <Info className="w-4 h-4 text-[#2D6A4F]" />
           <span>Scientific Ground Rules & Multi-Year Caveats</span>
         </div>
@@ -126,9 +126,9 @@ export const ProgressionView: React.FC = () => {
       </div>
 
       {/* Statistical Table Breakdown */}
-      <div className="bg-white rounded border border-[#D1DFD4] shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#D1DFD4] shadow-xs overflow-hidden">
         <div className="px-4 py-3 bg-[#EBF3EA] border-b border-[#D1DFD4]">
-          <h3 className="text-xs font-bold text-[#1B4332] uppercase tracking-wide">
+          <h3 className="text-xs font-bold text-[#133E26] uppercase tracking-wide">
             Detailed Progression Statistics by Relative Day
           </h3>
         </div>

@@ -86,7 +86,7 @@ export const Overview: React.FC<OverviewProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Station Selector & Action Row */}
-      <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <label className="block text-[11px] font-semibold text-[#4A6B56] uppercase tracking-wider mb-1">
             Monitoring Location / Neighbourhood
@@ -98,7 +98,7 @@ export const Overview: React.FC<OverviewProps> = ({
                 onClick={() => onSelectStation(stn.id)}
                 className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
                   stn.id === selectedStationId
-                    ? 'bg-[#1B4332] text-white shadow-sm'
+                    ? 'bg-[#133E26] text-white shadow-sm'
                     : 'bg-[#F8FAF8] text-[#0D2818] border border-[#D1DFD4] hover:bg-[#EBF3EA]'
                 }`}
               >
@@ -114,7 +114,7 @@ export const Overview: React.FC<OverviewProps> = ({
             <button
               onClick={() => setPollutant('PM2.5')}
               className={`px-2.5 py-1 rounded font-medium ${
-                pollutant === 'PM2.5' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+                pollutant === 'PM2.5' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
               }`}
             >
               PM2.5
@@ -122,7 +122,7 @@ export const Overview: React.FC<OverviewProps> = ({
             <button
               onClick={() => setPollutant('PM10')}
               className={`px-2.5 py-1 rounded font-medium ${
-                pollutant === 'PM10' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+                pollutant === 'PM10' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
               }`}
             >
               PM10
@@ -132,7 +132,7 @@ export const Overview: React.FC<OverviewProps> = ({
           <button
             onClick={handleTrain}
             disabled={training}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#2D6A4F] text-white text-xs font-medium hover:bg-[#1B4332] transition-colors disabled:opacity-50"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#2D6A4F] text-white text-xs font-medium hover:bg-[#133E26] transition-colors disabled:opacity-50"
           >
             <Play className={`w-3.5 h-3.5 ${training ? 'animate-spin' : ''}`} />
             <span>{training ? 'Training...' : 'Retrain Models'}</span>
@@ -150,7 +150,7 @@ export const Overview: React.FC<OverviewProps> = ({
       )}
 
       {trainMessage && (
-        <div className="bg-[#EBF3EA] border border-[#85A98F] text-[#1B4332] px-4 py-2 rounded text-xs flex items-center gap-2">
+        <div className="bg-[#EBF3EA] border border-[#85A98F] text-[#133E26] px-4 py-2 rounded text-xs flex items-center gap-2">
           <CheckCircle className="w-4 h-4 text-[#2D6A4F]" />
           <span>{trainMessage}</span>
         </div>
@@ -159,12 +159,12 @@ export const Overview: React.FC<OverviewProps> = ({
       {/* Primary KPI Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Ground Truth Observation */}
-        <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs">
           <div className="flex justify-between items-start">
             <span className="text-[11px] font-semibold text-[#4A6B56] uppercase tracking-wide">
               Latest Observed {pollutant}
             </span>
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#1B4332] font-mono">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#133E26] font-mono">
               Ground Truth
             </span>
           </div>
@@ -194,17 +194,17 @@ export const Overview: React.FC<OverviewProps> = ({
         {(() => {
           const fc1 = forecasts.find((f) => f.horizon_hours === 1);
           return (
-            <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+            <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs">
               <div className="flex justify-between items-start">
                 <span className="text-[11px] font-semibold text-[#4A6B56] uppercase tracking-wide">
                   +1 Hour Forecast
                 </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#1B4332] font-mono">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#133E26] font-mono">
                   Direct ML
                 </span>
               </div>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-3xl font-bold font-mono text-[#1B4332]">
+                <span className="text-3xl font-bold font-mono text-[#133E26]">
                   {fc1 ? fc1.point_forecast.toFixed(1) : '—'}
                 </span>
                 <span className="text-xs text-[#4A6B56]">µg/m³</span>
@@ -225,17 +225,17 @@ export const Overview: React.FC<OverviewProps> = ({
         {(() => {
           const fc6 = forecasts.find((f) => f.horizon_hours === 6);
           return (
-            <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+            <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs">
               <div className="flex justify-between items-start">
                 <span className="text-[11px] font-semibold text-[#4A6B56] uppercase tracking-wide">
                   +6 Hour Forecast
                 </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#1B4332] font-mono">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#133E26] font-mono">
                   Direct ML
                 </span>
               </div>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-3xl font-bold font-mono text-[#1B4332]">
+                <span className="text-3xl font-bold font-mono text-[#133E26]">
                   {fc6 ? fc6.point_forecast.toFixed(1) : '—'}
                 </span>
                 <span className="text-xs text-[#4A6B56]">µg/m³</span>
@@ -256,17 +256,17 @@ export const Overview: React.FC<OverviewProps> = ({
         {(() => {
           const fc24 = forecasts.find((f) => f.horizon_hours === 24);
           return (
-            <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+            <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs">
               <div className="flex justify-between items-start">
                 <span className="text-[11px] font-semibold text-[#4A6B56] uppercase tracking-wide">
                   +24 Hour Forecast
                 </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#1B4332] font-mono">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EBF3EA] text-[#133E26] font-mono">
                   Direct ML
                 </span>
               </div>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-3xl font-bold font-mono text-[#1B4332]">
+                <span className="text-3xl font-bold font-mono text-[#133E26]">
                   {fc24 ? fc24.point_forecast.toFixed(1) : '—'}
                 </span>
                 <span className="text-xs text-[#4A6B56]">µg/m³</span>
@@ -293,7 +293,7 @@ export const Overview: React.FC<OverviewProps> = ({
         />
 
         <div>
-          <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm mb-2">
+          <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs mb-2">
             <h3 className="text-sm font-bold text-[#0D2818] tracking-tight">
               Neighbourhood Spatial Overview & Fire Corridors
             </h3>
@@ -313,10 +313,10 @@ export const Overview: React.FC<OverviewProps> = ({
 
       {/* Pollution Peak & Recovery Analysis Section */}
       {peakRecovery && (
-        <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
           <div className="flex items-center gap-2 border-b border-[#EBF3EA] pb-3 mb-4">
-            <TrendingUp className="w-4 h-4 text-[#1B4332]" />
-            <h3 className="text-xs font-bold text-[#1B4332] uppercase tracking-wide">
+            <TrendingUp className="w-4 h-4 text-[#133E26]" />
+            <h3 className="text-xs font-bold text-[#133E26] uppercase tracking-wide">
               Pollution Peak & Recovery Analysis (Supported Horizons: 1h, 3h, 6h, 24h)
             </h3>
           </div>
@@ -344,7 +344,7 @@ export const Overview: React.FC<OverviewProps> = ({
 
             <div className="p-3 rounded bg-[#F8FAF8] border border-[#EBF3EA]">
               <span className="text-[#4A6B56] text-[11px] font-sans">Subsequent Trend</span>
-              <div className="text-sm font-bold text-[#1B4332] mt-1 font-sans">
+              <div className="text-sm font-bold text-[#133E26] mt-1 font-sans">
                 {peakRecovery.subsequent_trend}
               </div>
               <div className="text-[10px] text-[#4A6B56] mt-0.5">
@@ -376,7 +376,7 @@ export const Overview: React.FC<OverviewProps> = ({
 
       {/* Detailed Uncertainty Breakdown for 1h Horizon */}
       {forecasts.length > 0 && (
-        <div className="bg-white p-4 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-5 rounded-2xl-2xl border border-[#D1DFD4] shadow-xs">
           <h4 className="text-xs font-bold text-[#0D2818] uppercase tracking-wide mb-2">
             Held-Out Uncertainty Calibration (+1 Hour Model)
           </h4>

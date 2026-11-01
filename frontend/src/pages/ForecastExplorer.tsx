@@ -43,7 +43,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
   return (
     <div className="space-y-6">
       {/* Selector Control Bar */}
-      <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
         <h2 className="text-base font-bold text-[#0D2818] tracking-tight mb-4">
           Local Forecasting Engine Explorer
         </h2>
@@ -76,7 +76,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
               <button
                 onClick={() => setPollutant('PM2.5')}
                 className={`flex-1 py-1.5 rounded font-medium ${
-                  pollutant === 'PM2.5' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+                  pollutant === 'PM2.5' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
                 }`}
               >
                 PM2.5 (Fine Particulate)
@@ -84,7 +84,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
               <button
                 onClick={() => setPollutant('PM10')}
                 className={`flex-1 py-1.5 rounded font-medium ${
-                  pollutant === 'PM10' ? 'bg-[#1B4332] text-white' : 'text-[#4A6B56]'
+                  pollutant === 'PM10' ? 'bg-[#133E26] text-white' : 'text-[#4A6B56]'
                 }`}
               >
                 PM10 (Respirable)
@@ -104,7 +104,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
                   onClick={() => setHorizon(h)}
                   className={`py-1.5 rounded border text-center font-mono font-medium ${
                     horizon === h
-                      ? 'bg-[#1B4332] text-white border-[#1B4332]'
+                      ? 'bg-[#133E26] text-white border-[#1B4332]'
                       : 'bg-[#F8FAF8] text-[#0D2818] border-[#D1DFD4] hover:bg-[#EBF3EA]'
                   }`}
                 >
@@ -124,10 +124,10 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
 
       {/* Main Forecast Card */}
       {forecast && (
-        <div className="bg-white p-6 rounded border border-[#D1DFD4] shadow-sm">
+        <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-[#EBF3EA] pb-4 mb-4 gap-2">
             <div>
-              <span className="text-xs uppercase font-mono px-2 py-0.5 rounded bg-[#EBF3EA] text-[#1B4332]">
+              <span className="text-xs uppercase font-mono px-2 py-0.5 rounded bg-[#EBF3EA] text-[#133E26]">
                 Horizon: +{forecast.horizon_hours} Hours
               </span>
               <h3 className="text-lg font-bold text-[#0D2818] tracking-tight mt-1">
@@ -140,7 +140,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
 
             <div className="text-right">
               <div className="text-xs text-[#4A6B56]">Architecture:</div>
-              <div className="text-xs font-semibold text-[#1B4332]">
+              <div className="text-xs font-semibold text-[#133E26]">
                 {forecast.model_name}
               </div>
             </div>
@@ -150,7 +150,7 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             <div>
               <div className="text-xs text-[#4A6B56] font-medium">Model Point Forecast:</div>
-              <div className="text-5xl font-extrabold font-mono text-[#1B4332] mt-1">
+              <div className="text-5xl font-extrabold font-mono text-[#133E26] mt-1">
                 {forecast.point_forecast.toFixed(1)} <span className="text-lg font-normal text-[#4A6B56]">µg/m³</span>
               </div>
 
@@ -182,8 +182,8 @@ export const ForecastExplorer: React.FC<ForecastExplorerProps> = ({
       )}
 
       {/* Input Feature Snapshot Grid */}
-      <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
-        <h3 className="text-xs font-bold text-[#1B4332] uppercase tracking-wide mb-3 flex items-center gap-1.5">
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
+        <h3 className="text-xs font-bold text-[#133E26] uppercase tracking-wide mb-3 flex items-center gap-1.5">
           <CheckCircle2 className="w-4 h-4 text-[#2D6A4F]" />
           Feature Vector Telemetry at Inference Time
         </h3>

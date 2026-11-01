@@ -60,7 +60,7 @@ export const VehicleView: React.FC = () => {
       <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Car className="w-5 h-5 text-[#1B4332]" />
+            <Car className="w-5 h-5 text-[#133E26]" />
             <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
               Vehicle Intelligence &amp; Clean Route Exposure Advisor
             </h2>
@@ -73,7 +73,7 @@ export const VehicleView: React.FC = () => {
         <button
           onClick={handleRunDetection}
           disabled={isDetecting}
-          className="px-3.5 py-2 rounded bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-semibold flex items-center gap-2 transition-colors disabled:opacity-50"
+          className="px-3.5 py-2 rounded bg-[#133E26] hover:bg-[#2D6A4F] text-white text-xs font-semibold flex items-center gap-2 transition-colors disabled:opacity-50"
         >
           <Play className={`w-3.5 h-3.5 ${isDetecting ? 'animate-spin' : ''}`} />
           <span>{isDetecting ? 'Processing Stream...' : 'Sample Video Stream (30s)'}</span>
@@ -85,7 +85,7 @@ export const VehicleView: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           <div className="bg-white p-3.5 rounded border border-[#D1DFD4] shadow-xs">
             <div className="flex items-center gap-1.5 text-xs text-[#4A6B56] mb-1">
-              <Car className="w-3.5 h-3.5 text-[#1B4332]" />
+              <Car className="w-3.5 h-3.5 text-[#133E26]" />
               <span>Cars</span>
             </div>
             <div className="text-lg font-bold text-[#0D2818]">{detection.class_breakdown.cars}</div>
@@ -129,7 +129,7 @@ export const VehicleView: React.FC = () => {
           </div>
 
           <div className="bg-white p-3.5 rounded border border-[#D1DFD4] shadow-xs bg-[#EBF3EA]">
-            <div className="text-xs text-[#1B4332] font-semibold mb-1">Est. PM2.5 Load</div>
+            <div className="text-xs text-[#133E26] font-semibold mb-1">Est. PM2.5 Load</div>
             <div className="text-lg font-bold text-[#0D2818]">{detection.estimated_hourly_pm25_kg} <span className="text-xs font-normal">kg/h</span></div>
             <div className="text-[10px] text-[#2D6A4F] mt-0.5">NOx: {detection.estimated_hourly_nox_kg} kg/h</div>
           </div>
@@ -194,7 +194,7 @@ export const VehicleView: React.FC = () => {
         <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Navigation className="w-4 h-4 text-[#1B4332]" />
+              <Navigation className="w-4 h-4 text-[#133E26]" />
               <h3 className="text-sm font-bold text-[#0D2818]">
                 Clean Route Exposure Solver
               </h3>
@@ -232,7 +232,7 @@ export const VehicleView: React.FC = () => {
                       onClick={() => setTravelMode(mode)}
                       className={`px-3 py-1 rounded capitalize border text-xs font-medium ${
                         travelMode === mode
-                          ? 'bg-[#1B4332] text-white border-[#1B4332]'
+                          ? 'bg-[#133E26] text-white border-[#1B4332]'
                           : 'bg-[#F8FAF8] text-[#4A6B56] border-[#D1DFD4]'
                       }`}
                     >
@@ -244,7 +244,7 @@ export const VehicleView: React.FC = () => {
                 <button
                   onClick={handleSolveRoute}
                   disabled={isSolvingRoute}
-                  className="px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded transition-colors disabled:opacity-50"
+                  className="px-4 py-2 bg-[#133E26] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded transition-colors disabled:opacity-50"
                 >
                   {isSolvingRoute ? 'Computing...' : 'Calculate Routes'}
                 </button>
@@ -268,7 +268,7 @@ export const VehicleView: React.FC = () => {
 
                 <div className="p-3 rounded-lg border border-[#85A98F] bg-[#EBF3EA]">
                   <div className="flex justify-between items-baseline mb-1">
-                    <span className="text-xs font-bold text-[#1B4332] flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-[#133E26] flex items-center gap-1.5">
                       <ShieldCheck className="w-4 h-4 text-[#2D6A4F]" />
                       {routeResult.clean_route.route_name}
                     </span>
@@ -276,7 +276,7 @@ export const VehicleView: React.FC = () => {
                       -{routeResult.potential_exposure_reduction_pct}% Inhaled PM2.5
                     </span>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 text-xs text-[#1B4332] mt-2">
+                  <div className="grid grid-cols-3 gap-2 text-xs text-[#133E26] mt-2">
                     <div>Dist: <strong>{routeResult.clean_route.distance_km} km</strong></div>
                     <div>Time: <strong>{routeResult.clean_route.travel_time_min} min</strong></div>
                     <div>Avg PM2.5: <strong>{routeResult.clean_route.avg_pm25_ugm3} µg/m³</strong></div>

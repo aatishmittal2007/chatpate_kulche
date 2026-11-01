@@ -21,6 +21,30 @@ interface LandingPageProps {
   onNavigate: (tab: string) => void;
 }
 
+const SkyLantern: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 40 56" className={className} fill="none">
+    <defs>
+      <radialGradient id="lanternGlow" cx="50%" cy="65%" r="60%">
+        <stop offset="0%" stopColor="#FFF9C4" stopOpacity="1" />
+        <stop offset="30%" stopColor="#FFE082" stopOpacity="0.95" />
+        <stop offset="70%" stopColor="#FFA000" stopOpacity="0.85" />
+        <stop offset="100%" stopColor="#E65100" stopOpacity="0.75" />
+      </radialGradient>
+      <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2.5" result="glow" />
+        <feComposite in="SourceGraphic" in2="glow" operator="over" />
+      </filter>
+    </defs>
+    <path 
+      d="M12 6 C10 6 7 12 6 22 C5 34 8 44 14 50 L26 50 C32 44 35 34 34 22 C33 12 30 6 28 6 Z" 
+      fill="url(#lanternGlow)" 
+      filter="url(#softGlow)"
+    />
+    <path d="M14 50 L26 50 L24 53 L16 53 Z" fill="#FFE082" />
+    <circle cx="20" cy="38" r="3.5" fill="#FFFFFF" opacity="0.95" />
+  </svg>
+);
+
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   const [metrics, setMetrics] = useState<any[]>([]);
   const [summary, setSummary] = useState<any>(null);
@@ -100,15 +124,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           }}
         />
 
-        {/* Floating Diwali Sky Lanterns */}
-        <div className="absolute top-12 left-1/3 w-7 h-10 pointer-events-none opacity-80 animate-pulse hidden sm:block">
-          <img src="/assets/lantern.png" alt="Diwali Sky Lantern" className="w-full h-full object-contain filter drop-shadow(0 0 6px rgba(255,180,50,0.6))" />
+        {/* Floating Diwali Sky Lanterns (Vector SVG, Clean, Zero-Clipping) */}
+        <div className="absolute top-12 left-1/3 w-8 h-12 pointer-events-none opacity-85 animate-pulse hidden sm:block">
+          <SkyLantern className="w-full h-full filter drop-shadow(0 0 8px rgba(255,180,50,0.8))" />
         </div>
-        <div className="absolute top-28 right-1/4 w-9 h-12 pointer-events-none opacity-85 hidden md:block">
-          <img src="/assets/lantern.png" alt="Diwali Sky Lantern" className="w-full h-full object-contain filter drop-shadow(0 0 8px rgba(255,180,50,0.7))" />
+        <div className="absolute top-28 right-1/4 w-10 h-14 pointer-events-none opacity-90 hidden md:block">
+          <SkyLantern className="w-full h-full filter drop-shadow(0 0 10px rgba(255,180,50,0.9))" />
         </div>
-        <div className="absolute top-8 right-16 w-11 h-14 pointer-events-none opacity-90">
-          <img src="/assets/lantern.png" alt="Diwali Sky Lantern" className="w-full h-full object-contain filter drop-shadow(0 0 10px rgba(255,180,50,0.8))" />
+        <div className="absolute top-8 right-16 w-12 h-16 pointer-events-none opacity-95">
+          <SkyLantern className="w-full h-full filter drop-shadow(0 0 12px rgba(255,180,50,1))" />
         </div>
 
         {/* Hero Content Grid (Left: Typography & CTAs, Right: Globe & Card) */}

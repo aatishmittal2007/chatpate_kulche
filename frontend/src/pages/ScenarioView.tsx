@@ -64,9 +64,9 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Title & Warning Header */}
-      <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
+      <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
         <div className="flex items-center gap-2 mb-1">
-          <Sliders className="w-4 h-4 text-[#1B4332]" />
+          <Sliders className="w-4 h-4 text-[#133E26]" />
           <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
             Hypothetical Environmental Scenario Laboratory
           </h2>
@@ -86,9 +86,9 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Controls Column */}
-        <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm space-y-4">
+        <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
           <div className="flex justify-between items-center border-b border-[#EBF3EA] pb-2">
-            <h3 className="text-xs font-bold text-[#1B4332] uppercase tracking-wide">
+            <h3 className="text-xs font-bold text-[#133E26] uppercase tracking-wide">
               Scenario Perturbations
             </h3>
             <button
@@ -150,7 +150,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-[#0D2818] font-medium">Wind Speed Multiplier</span>
-              <span className="font-mono text-[#1B4332] font-bold">{windSpeedMult.toFixed(2)}x</span>
+              <span className="font-mono text-[#133E26] font-bold">{windSpeedMult.toFixed(2)}x</span>
             </div>
             <input
               type="range"
@@ -172,7 +172,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-[#0D2818] font-medium">Wind Direction Shift</span>
-              <span className="font-mono text-[#1B4332] font-bold">
+              <span className="font-mono text-[#133E26] font-bold">
                 {windDirShift > 0 ? `+${windDirShift}°` : `${windDirShift}°`}
               </span>
             </div>
@@ -196,7 +196,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-[#0D2818] font-medium">Traffic Flow Reduction</span>
-              <span className="font-mono text-[#1B4332] font-bold">-{trafficReduc}%</span>
+              <span className="font-mono text-[#133E26] font-bold">-{trafficReduc}%</span>
             </div>
             <input
               type="range"
@@ -218,7 +218,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-[#0D2818] font-medium">Agricultural Fire Activity</span>
-              <span className="font-mono text-[#1B4332] font-bold">{fireMult.toFixed(1)}x</span>
+              <span className="font-mono text-[#133E26] font-bold">{fireMult.toFixed(1)}x</span>
             </div>
             <input
               type="range"
@@ -240,7 +240,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-[#0D2818] font-medium">Relative Humidity Shift</span>
-              <span className="font-mono text-[#1B4332] font-bold">
+              <span className="font-mono text-[#133E26] font-bold">
                 {humidityShift > 0 ? `+${humidityShift}%` : `${humidityShift}%`}
               </span>
             </div>
@@ -263,7 +263,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
           <button
             onClick={handleRunScenario}
             disabled={loading}
-            className="w-full py-2.5 rounded bg-[#1B4332] text-white text-xs font-semibold hover:bg-[#0D2818] transition-colors disabled:opacity-50"
+            className="w-full py-2.5 rounded bg-[#133E26] text-white text-xs font-semibold hover:bg-[#0D2818] transition-colors disabled:opacity-50"
           >
             {loading ? 'Evaluating Scenario...' : 'Simulate Hypothetical Scenario'}
           </button>
@@ -282,7 +282,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
               {/* Comparison Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Baseline Card */}
-                <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
+                <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
                   <div className="text-[11px] font-semibold text-[#4A6B56] uppercase">
                     Baseline Forecast (+{result.horizon_hours}h)
                   </div>
@@ -296,11 +296,11 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
 
                 {/* Scenario Card */}
                 <div className="bg-white p-5 rounded border border-[#1B4332] shadow-sm bg-[#EBF3EA]/30">
-                  <div className="text-[11px] font-semibold text-[#1B4332] uppercase">
+                  <div className="text-[11px] font-semibold text-[#133E26] uppercase">
                     Hypothetical Scenario Forecast (+{result.horizon_hours}h)
                   </div>
-                  <div className="text-3xl font-extrabold font-mono text-[#1B4332] mt-2">
-                    {result.scenario_forecast.toFixed(1)} <span className="text-xs font-normal text-[#1B4332]">µg/m³</span>
+                  <div className="text-3xl font-extrabold font-mono text-[#133E26] mt-2">
+                    {result.scenario_forecast.toFixed(1)} <span className="text-xs font-normal text-[#133E26]">µg/m³</span>
                   </div>
                   <div className="text-[11px] font-mono mt-2 flex items-center gap-2">
                     <span className="text-[#4A6B56]">Model Delta:</span>
@@ -313,7 +313,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
               </div>
 
               {/* Counterfactual Assumptions Box */}
-              <div className="bg-white p-5 rounded border border-[#D1DFD4] shadow-sm">
+              <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs">
                 <h4 className="text-xs font-bold text-[#0D2818] uppercase tracking-wide mb-2">
                   Explicit Counterfactual Assumptions in this Scenario:
                 </h4>
@@ -329,7 +329,7 @@ export const ScenarioView: React.FC<ScenarioViewProps> = ({
               </div>
             </div>
           ) : (
-            <div className="bg-white p-12 rounded border border-[#D1DFD4] shadow-sm text-center">
+            <div className="bg-white p-12 rounded-2xl border border-[#D1DFD4] shadow-xs text-center">
               <Sliders className="w-8 h-8 text-[#85A98F] mx-auto mb-3" />
               <h3 className="text-sm font-bold text-[#0D2818]">No Scenario Simulated Yet</h3>
               <p className="text-xs text-[#4A6B56] max-w-md mx-auto mt-1">

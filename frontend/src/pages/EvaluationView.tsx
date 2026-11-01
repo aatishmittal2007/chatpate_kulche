@@ -50,7 +50,7 @@ export const EvaluationView: React.FC = () => {
       {/* Title & Introduction */}
       <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs">
         <div className="flex items-center gap-2 mb-2">
-          <ShieldCheck className="w-5 h-5 text-[#1B4332]" />
+          <ShieldCheck className="w-5 h-5 text-[#133E26]" />
           <h2 className="text-xl font-bold text-[#0D2818] tracking-tight">
             Official Experiment Evaluation &amp; Multi-Model Benchmarking
           </h2>
@@ -66,7 +66,7 @@ export const EvaluationView: React.FC = () => {
       <div className="bg-white rounded-2xl border border-[#D1DFD4] shadow-xs overflow-hidden">
         <div className="px-6 py-4 bg-[#EBF3EA] border-b border-[#D1DFD4] flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div>
-            <h3 className="text-sm font-bold text-[#1B4332] uppercase tracking-wide">
+            <h3 className="text-sm font-bold text-[#133E26] uppercase tracking-wide">
               2019 Test Set Model Comparisons (Source: model_metrics.csv)
             </h3>
             <p className="text-xs text-[#4A6B56]">
@@ -80,7 +80,7 @@ export const EvaluationView: React.FC = () => {
               onClick={() => setActiveWindow('All_2019')}
               className={`px-3 py-1 rounded text-xs font-semibold transition-colors cursor-pointer ${
                 activeWindow === 'All_2019'
-                  ? 'bg-[#1B4332] text-white'
+                  ? 'bg-[#133E26] text-white'
                   : 'text-[#4A6B56] hover:text-[#0D2818]'
               }`}
             >
@@ -90,7 +90,7 @@ export const EvaluationView: React.FC = () => {
               onClick={() => setActiveWindow('Diwali_7d')}
               className={`px-3 py-1 rounded text-xs font-semibold transition-colors cursor-pointer ${
                 activeWindow === 'Diwali_7d'
-                  ? 'bg-[#1B4332] text-white'
+                  ? 'bg-[#133E26] text-white'
                   : 'text-[#4A6B56] hover:text-[#0D2818]'
               }`}
             >
@@ -100,7 +100,7 @@ export const EvaluationView: React.FC = () => {
               onClick={() => setActiveWindow('Diwali_3d')}
               className={`px-3 py-1 rounded text-xs font-semibold transition-colors cursor-pointer ${
                 activeWindow === 'Diwali_3d'
-                  ? 'bg-[#1B4332] text-white'
+                  ? 'bg-[#133E26] text-white'
                   : 'text-[#4A6B56] hover:text-[#0D2818]'
               }`}
             >
@@ -137,15 +137,15 @@ export const EvaluationView: React.FC = () => {
                       {m.Model.replace('_', ' ')}
                     </td>
                     <td className="px-5 py-3 text-[#4A6B56]">{Number(m.n).toLocaleString()}</td>
-                    <td className={`px-5 py-3 text-sm ${isResidualXgb ? 'text-[#1B4332] font-extrabold' : 'text-[#0D2818]'}`}>
+                    <td className={`px-5 py-3 text-sm ${isResidualXgb ? 'text-[#133E26] font-extrabold' : 'text-[#0D2818]'}`}>
                       {Number(m.MAE).toFixed(3)}
                     </td>
-                    <td className={`px-5 py-3 text-sm ${isEnsemble ? 'text-[#1B4332] font-extrabold' : 'text-[#0D2818]'}`}>
+                    <td className={`px-5 py-3 text-sm ${isEnsemble ? 'text-[#133E26] font-extrabold' : 'text-[#0D2818]'}`}>
                       {Number(m.RMSE).toFixed(3)}
                     </td>
                     <td className="px-5 py-3 font-sans">
                       {isResidualXgb ? (
-                        <span className="px-2 py-0.5 rounded bg-[#1B4332] text-white text-[11px] font-bold">
+                        <span className="px-2 py-0.5 rounded bg-[#133E26] text-white text-[11px] font-bold">
                           Lowest MAE Winner
                         </span>
                       ) : isEnsemble ? (
@@ -168,7 +168,7 @@ export const EvaluationView: React.FC = () => {
         {/* Validation Ensemble Weights Bar */}
         <div className="p-5 bg-[#FAF9F5] border-t border-[#D1DFD4] flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
           <div className="flex items-center space-x-2">
-            <Scale className="w-4 h-4 text-[#1B4332]" />
+            <Scale className="w-4 h-4 text-[#133E26]" />
             <span className="font-bold text-[#0D2818]">
               Validation-Derived Ensemble Weights (Source: ensemble_weights.csv):
             </span>
@@ -178,7 +178,7 @@ export const EvaluationView: React.FC = () => {
             {weights.map((w, i) => (
               <div key={i} className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#D1DFD4]">
                 <span className="font-semibold text-[#133E26]">{w.Model}:</span>
-                <span className="font-mono font-bold text-[#1B4332]">
+                <span className="font-mono font-bold text-[#133E26]">
                   {Number(w.Validation_Ensemble_Weight).toFixed(2)}
                 </span>
               </div>
@@ -228,7 +228,7 @@ export const EvaluationView: React.FC = () => {
         <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
           <div className="flex items-center justify-between pb-2 border-b border-[#EBF3EA]">
             <div className="flex items-center space-x-2">
-              <Layers className="w-5 h-5 text-[#1B4332]" />
+              <Layers className="w-5 h-5 text-[#133E26]" />
               <h3 className="text-base font-bold text-[#0D2818]">
                 Feature Importance (LightGBM)
               </h3>
@@ -263,8 +263,8 @@ export const EvaluationView: React.FC = () => {
           ========================================================= */}
       <div className="bg-white rounded-2xl border border-[#D1DFD4] shadow-xs overflow-hidden">
         <div className="px-6 py-4 bg-[#EBF3EA] border-b border-[#D1DFD4] flex items-center gap-2">
-          <Layers className="w-5 h-5 text-[#1B4332]" />
-          <h3 className="text-sm font-bold text-[#1B4332] uppercase tracking-wide">
+          <Layers className="w-5 h-5 text-[#133E26]" />
+          <h3 className="text-sm font-bold text-[#133E26] uppercase tracking-wide">
             6-Stage Feature Ablation Experiment (Incremental Telemetry Value)
           </h3>
         </div>
@@ -306,16 +306,16 @@ export const EvaluationView: React.FC = () => {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#4A6B56]">
           {limitations.map((lim, idx) => (
             <li key={idx} className="flex items-start space-x-2 bg-white p-3 rounded-lg border border-[#D1DFD4]">
-              <span className="text-[#1B4332] font-bold">•</span>
+              <span className="text-[#133E26] font-bold">•</span>
               <span>{lim}</span>
             </li>
           ))}
           <li className="flex items-start space-x-2 bg-white p-3 rounded-lg border border-[#D1DFD4]">
-            <span className="text-[#1B4332] font-bold">•</span>
+            <span className="text-[#133E26] font-bold">•</span>
             <span>The source dataset ends in July 2020. No validation on Diwali 2026 is claimed.</span>
           </li>
           <li className="flex items-start space-x-2 bg-white p-3 rounded-lg border border-[#D1DFD4]">
-            <span className="text-[#1B4332] font-bold">•</span>
+            <span className="text-[#133E26] font-bold">•</span>
             <span>External weather, fire, and traffic are independent evidence layers not merged in the 2015-2020 weights.</span>
           </li>
         </ul>

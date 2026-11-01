@@ -56,7 +56,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
       <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-[#1B4332]" />
+            <BookOpen className="w-5 h-5 text-[#133E26]" />
             <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
               Bloom's Taxonomy Environmental Decision-Support &amp; Learning
             </h2>
@@ -74,7 +74,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
               onClick={() => setActiveLevel(lvl)}
               className={`px-3 py-1.5 rounded font-semibold transition-colors border ${
                 activeLevel === lvl
-                  ? 'bg-[#1B4332] text-white border-[#1B4332]'
+                  ? 'bg-[#133E26] text-white border-[#1B4332]'
                   : 'bg-[#F8FAF8] text-[#4A6B56] border-[#D1DFD4] hover:bg-[#EBF3EA]'
               }`}
             >
@@ -96,7 +96,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {framework.levels[0]?.topics?.map((t, idx) => (
                   <div key={idx} className="p-4 rounded-lg border border-[#D1DFD4] bg-[#F8FAF8] space-y-1.5">
-                    <h4 className="text-xs font-bold text-[#1B4332]">{t.title}</h4>
+                    <h4 className="text-xs font-bold text-[#133E26]">{t.title}</h4>
                     <p className="text-xs text-[#0D2818] leading-relaxed">{t.content}</p>
                   </div>
                 ))}
@@ -107,13 +107,13 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
           {activeLevel === 'Understand' && (
             <div className="space-y-4">
               <div className="border-b border-[#EBF3EA] pb-3">
-                <span className="text-xs px-2.5 py-1 rounded bg-[#EBF3EA] text-[#1B4332] font-bold">Level 2: Conceptual Physics</span>
+                <span className="text-xs px-2.5 py-1 rounded bg-[#EBF3EA] text-[#133E26] font-bold">Level 2: Conceptual Physics</span>
                 <h3 className="text-sm font-bold text-[#0D2818] mt-2">Atmospheric Mechanics of Stagnation</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {framework.levels[1]?.topics?.map((t, idx) => (
                   <div key={idx} className="p-4 rounded-lg border border-[#D1DFD4] bg-[#F8FAF8] space-y-1.5">
-                    <h4 className="text-xs font-bold text-[#1B4332]">{t.title}</h4>
+                    <h4 className="text-xs font-bold text-[#133E26]">{t.title}</h4>
                     <p className="text-xs text-[#0D2818] leading-relaxed">{t.content}</p>
                   </div>
                 ))}
@@ -221,7 +221,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
                 <div className="space-y-4">
                   <div className="p-4 rounded-lg bg-[#EBF3EA] border border-[#85A98F] flex justify-between items-center">
                     <div>
-                      <div className="text-xs text-[#1B4332]">Target: <strong>{actionPlan.neighbourhood_name}</strong> &bull; Profile: <strong>{actionPlan.vulnerability_group}</strong></div>
+                      <div className="text-xs text-[#133E26]">Target: <strong>{actionPlan.neighbourhood_name}</strong> &bull; Profile: <strong>{actionPlan.vulnerability_group}</strong></div>
                       <div className="text-sm font-bold text-[#0D2818] mt-0.5">
                         Current AQI: {actionPlan.current_aqi} &bull; Forecasted Peak: {actionPlan.predicted_peak_aqi} (Severe)
                       </div>
@@ -238,7 +238,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
                     </div>
 
                     <div className="p-4 rounded-lg border border-[#D1DFD4] bg-[#F8FAF8] space-y-2">
-                      <h4 className="font-bold text-[#1B4332]">🏠 Indoor Safe Zone</h4>
+                      <h4 className="font-bold text-[#133E26]">🏠 Indoor Safe Zone</h4>
                       <ul className="list-disc pl-4 space-y-1 text-[#0D2818]">
                         {actionPlan.indoor_guidance.map((act, i) => <li key={i}>{act}</li>)}
                       </ul>
@@ -260,7 +260,7 @@ export const BloomsView: React.FC<BloomsViewProps> = ({ stations, selectedStatio
 
                   <div className="p-4 rounded-lg border border-[#D1DFD4] bg-[#F8FAF8] text-xs">
                     <div className="font-bold text-[#0D2818] mb-1 flex items-center gap-1.5">
-                      <FileText className="w-4 h-4 text-[#1B4332]" />
+                      <FileText className="w-4 h-4 text-[#133E26]" />
                       <span>Ward-Level Policy Brief Recommendation:</span>
                     </div>
                     <p className="text-[#4A6B56] leading-relaxed italic">

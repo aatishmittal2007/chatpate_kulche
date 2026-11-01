@@ -87,35 +87,28 @@ export default function App() {
 
           {tab === 'map' && (
             <div className="space-y-4">
-              <div className="bg-white p-5 rounded-xl border border-[#D1DFD4] shadow-xs flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+              <div className="bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                 <div>
-                  <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
+                  <h2 className="text-lg font-extrabold text-[#133E26] tracking-tight">
                     Multi-Source Geospatial Intelligence Map
                   </h2>
-                  <p className="text-xs text-[#4A6B56]">
+                  <p className="text-xs text-[#4A6B56] mt-0.5">
                     Layered spatial view of CPCB reference stations, NASA FIRMS fire pixels, arterial corridors, and citizen ground reports
                   </p>
                 </div>
-                <select
-                  value={selectedStationId}
-                  onChange={(e) => setSelectedStationId(e.target.value)}
-                  className="text-xs p-2 rounded-lg border border-[#D1DFD4] bg-[#FAF9F5] font-semibold text-[#0D2818]"
-                >
-                  {stations.map((s) => (
-                    <option key={s.id} value={s.id}>{s.name} ({s.city})</option>
-                  ))}
-                </select>
+                <div className="flex items-center space-x-2 text-xs text-[#4A6B56] font-medium">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>5 Active Layers</span>
+                </div>
               </div>
-              <div className="h-[620px] rounded-xl overflow-hidden border border-[#D1DFD4] shadow-xs">
-                <PollutionMap
-                  stations={stations}
-                  selectedStationId={selectedStationId}
-                  onSelectStation={setSelectedStationId}
-                  fires={fires}
-                  corridors={corridors}
-                  reports={reports}
-                />
-              </div>
+              <PollutionMap
+                stations={stations}
+                selectedStationId={selectedStationId}
+                onSelectStation={setSelectedStationId}
+                fires={fires}
+                corridors={corridors}
+                reports={reports}
+              />
             </div>
           )}
 

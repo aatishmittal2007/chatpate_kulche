@@ -11,11 +11,14 @@ import {
   CheckCircle2, 
   Clock, 
   ChevronRight,
-  Database
+  Database,
+  ArrowUpRight,
+  Activity,
+  AlertCircle
 } from 'lucide-react';
 import { 
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
-  Tooltip, Legend, ResponsiveContainer, ReferenceLine, AreaChart, Area
+  Tooltip, Legend, ResponsiveContainer, ReferenceLine, AreaChart, Area, Cell
 } from 'recharts';
 import { 
   fetchExperimentSummary, 
@@ -64,13 +67,49 @@ export const AnalyticsView: React.FC = () => {
   // Load feature importance when model selection changes
   useEffect(() => {
     fetchExperimentFeatureImportance(importanceModel)
-      .then(data => setFeatureImportance(data.slice(0, 12)))
+      .then(data => setFeatureImportance(data.slice(0, 10)))
       .catch(() => {});
   }, [importanceModel]);
 
-  // Load timeseries and samples
+  // Load timeseries and samples with resilient fallback
   useEffect(() => {
     setLoadingTimeseries(true);
+
+    const calcStats = (pts: any[]) => {
+      if (!pts || pts.length === 0) return null;
+      const actuals = pts.map(p => p.actual_next_hour).filter(v => v !== null && !isNaN(v)) as number[];
+      const resXgb = pts.map(p => p.residual_xgboost).filter(v => v !== null && !isNaN(v)) as number[];
+      const ens = pts.map(p => p.weighted_ensemble).filter(v => v !== null && !isNaN(v)) as number[];
+      const pers = pts.map(p => p.persistence).filter(v => v !== null && !isNaN(v)) as number[];
+
+      const calcMae = (pred: number[], act: number[]) => {
+        if (!pred.length || !act.length) return '—';
+        const len = Math.min(pred.length, act.length);
+        let sum = 0;
+        for (let i = 0; i < len; i++) sum += Math.abs(pred[i] - act[i]);
+        return (sum / len).toFixed(2);
+      };
+
+      const calcRmse = (pred: number[], act: number[]) => {
+        if (!pred.length || !act.length) return '—';
+        const len = Math.min(pred.length, act.length);
+        let sumSq = 0;
+        for (let i = 0; i < len; i++) sumSq += (pred[i] - act[i]) ** 2;
+        return Math.sqrt(sumSq / len).toFixed(2);
+      };
+
+      return {
+        count: pts.length,
+        mean: actuals.length ? (actuals.reduce((a, b) => a + b, 0) / actuals.length).toFixed(1) : '—',
+        max: actuals.length ? Math.max(...actuals).toFixed(1) : '—',
+        residual_xgb_mae: calcMae(resXgb, actuals),
+        residual_xgb_rmse: calcRmse(resXgb, actuals),
+        ensemble_mae: calcMae(ens, actuals),
+        ensemble_rmse: calcRmse(ens, actuals),
+        persistence_mae: calcMae(pers, actuals)
+      };
+    };
+
     if (selectedWindow === 'diwali_7d' || selectedWindow === 'diwali_3d') {
       fetchExperimentDiwaliTimeseries(selectedStation)
         .then(res => {
@@ -78,39 +117,45 @@ export const AnalyticsView: React.FC = () => {
           if (selectedWindow === 'diwali_3d') {
             pts = pts.filter((p: any) => p.is_diwali_3d);
           }
-          setTimeseriesData(pts);
-          // calculate summary stats
-          if (pts.length > 0) {
-            const actuals = pts.map((p: any) => p.actual_next_hour).filter((v: any) => v !== null) as number[];
-            const resXgb = pts.map((p: any) => p.residual_xgboost).filter((v: any) => v !== null) as number[];
-            const ens = pts.map((p: any) => p.weighted_ensemble).filter((v: any) => v !== null) as number[];
-            const pers = pts.map((p: any) => p.persistence).filter((v: any) => v !== null) as number[];
-            
-            const calcMae = (pred: number[], act: number[]) => {
-              const diffs = pred.map((p, i) => Math.abs(p - act[i]));
-              return (diffs.reduce((a, b) => a + b, 0) / diffs.length).toFixed(2);
-            };
-            const calcRmse = (pred: number[], act: number[]) => {
-              const sqDiffs = pred.map((p, i) => (p - act[i]) ** 2);
-              return Math.sqrt(sqDiffs.reduce((a, b) => a + b, 0) / sqDiffs.length).toFixed(2);
-            };
-
-            setSampleStats({
-              count: pts.length,
-              mean: (actuals.reduce((a, b) => a + b, 0) / actuals.length).toFixed(1),
-              max: Math.max(...actuals).toFixed(1),
-              residual_xgb_mae: calcMae(resXgb, actuals),
-              residual_xgb_rmse: calcRmse(resXgb, actuals),
-              ensemble_mae: calcMae(ens, actuals),
-              ensemble_rmse: calcRmse(ens, actuals),
-              persistence_mae: calcMae(pers, actuals)
+          if (pts.length === 0) {
+            return fetchExperimentPredictionsSample(selectedStation, selectedWindow, 300).then(sampleRes => {
+              const mapped = (sampleRes.rows || []).map((r: any) => ({
+                datetime: r.Datetime,
+                observed_current: r['PM2.5'],
+                actual_next_hour: r.target_next_hour,
+                residual_xgboost: r.Residual_XGBoost_prediction,
+                weighted_ensemble: r.Weighted_Ensemble_prediction,
+                persistence: r.Persistence_prediction,
+                is_diwali_day: r.Datetime ? r.Datetime.includes('2019-10-27') : false,
+                is_diwali_3d: Boolean(r.diwali_window_3d)
+              }));
+              mapped.sort((a: any, b: any) => (a.datetime > b.datetime ? 1 : -1));
+              setTimeseriesData(mapped);
+              setSampleStats(calcStats(mapped));
             });
+          } else {
+            pts.sort((a, b) => (a.datetime > b.datetime ? 1 : -1));
+            setTimeseriesData(pts);
+            setSampleStats(calcStats(pts));
           }
+        })
+        .catch(() => {
+          fetchExperimentPredictionsSample(selectedStation, selectedWindow, 200).then(sampleRes => {
+            const mapped = (sampleRes.rows || []).map((r: any) => ({
+              datetime: r.Datetime,
+              observed_current: r['PM2.5'],
+              actual_next_hour: r.target_next_hour,
+              residual_xgboost: r.Residual_XGBoost_prediction,
+              weighted_ensemble: r.Weighted_Ensemble_prediction,
+              persistence: r.Persistence_prediction
+            }));
+            setTimeseriesData(mapped);
+            setSampleStats(calcStats(mapped));
+          }).catch(() => {});
         })
         .finally(() => setLoadingTimeseries(false));
     } else {
-      // All 2019 sample slice
-      fetchExperimentPredictionsSample(selectedStation, 'all', 200)
+      fetchExperimentPredictionsSample(selectedStation, 'all', 250)
         .then(res => {
           const pts = (res.rows || []).map((r: any) => ({
             datetime: r.Datetime,
@@ -122,9 +167,11 @@ export const AnalyticsView: React.FC = () => {
             is_diwali_day: false,
             is_diwali_3d: false
           }));
+          pts.sort((a: any, b: any) => (a.datetime > b.datetime ? 1 : -1));
           setTimeseriesData(pts);
-          setSampleStats(res.summary_stats);
+          setSampleStats(calcStats(pts));
         })
+        .catch(() => {})
         .finally(() => setLoadingTimeseries(false));
     }
   }, [selectedStation, selectedWindow]);
@@ -151,59 +198,63 @@ export const AnalyticsView: React.FC = () => {
     document.body.removeChild(link);
   };
 
-  // Residual error data
-  const residualErrors = timeseriesData.slice(0, 80).map(d => {
+  // Residual error data (first 60 time points for clear bar spacing)
+  const residualErrors = timeseriesData.slice(0, 60).map(d => {
     const act = d.actual_next_hour;
     const pred = d.residual_xgboost;
-    const err = (act !== null && pred !== null) ? Number((pred - act).toFixed(1)) : 0;
+    const err = (act !== null && pred !== null && !isNaN(act) && !isNaN(pred)) 
+      ? Number((pred - act).toFixed(1)) 
+      : 0;
     return {
-      time: d.datetime.slice(5, 16),
+      time: d.datetime ? d.datetime.slice(5, 16) : '',
       error: err,
-      color: err >= 0 ? '#1B4332' : '#C62828'
+      isPositive: err >= 0
     };
   });
 
   const selectedStationObj = stations.find(s => s.id === selectedStation);
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-6 pb-12">
       
-      {/* =========================================================
-          TOP BANNER: DATA PROVENANCE & CONTROLS
-          ========================================================= */}
-      <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+      {/* TOP BANNER: DATA PROVENANCE & COMPACT CONTROLS */}
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5">
         <div>
-          <div className="flex items-center space-x-2 text-[#133E26] font-bold text-lg sm:text-xl">
-            <BarChart2 className="w-6 h-6 text-[#1B4332]" />
-            <span>Prediction Analytics &amp; Empirical Benchmark Engine</span>
+          <div className="flex items-center space-x-2.5 text-[#133E26]">
+            <div className="w-8 h-8 rounded-lg bg-[#EBF3EA] flex items-center justify-center text-[#133E26]">
+              <BarChart2 className="w-4 h-4 text-[#133E26]" />
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold tracking-tight text-[#133E26]">
+              Prediction Analytics &amp; Empirical Benchmark Engine
+            </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[#4A6B56] mt-1 max-w-2xl">
-            Direct next-hour PM2.5 forecasting verified on 100,000 scored records from the 2019 test set across 15 CAAQMS stations.
+          <p className="text-xs sm:text-sm text-[#4A6B56] mt-1.5 max-w-2xl font-normal leading-relaxed">
+            Direct next-hour PM2.5 forecasting verified on 100,000 scored records from the 2019 test set across 15 CAAQMS reference stations.
           </p>
-          <div className="flex flex-wrap items-center gap-2 mt-3 text-xs text-[#2D6A4F]">
-            <span className="px-2.5 py-1 bg-[#EBF3EA] rounded-md font-semibold border border-[#D1DFD4]">
-              Dataset: 2015–2020 CPCB CAAQMS Archive
+          <div className="flex flex-wrap items-center gap-2 mt-3 text-xs">
+            <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md font-semibold text-[#133E26] border border-[#D1DFD4]">
+              2015–2020 CPCB CAAQMS Archive
             </span>
-            <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md font-semibold border border-[#D1DFD4]">
-              Training Fit: 100,000 rows (≤2017)
+            <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md font-semibold text-[#4A6B56] border border-[#D1DFD4]">
+              Training Split: 100k rows (≤2017)
             </span>
-            <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md font-semibold border border-[#D1DFD4]">
-              Target: Next-Hour PM2.5 (t + 1h)
+            <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md font-semibold text-[#4A6B56] border border-[#D1DFD4]">
+              Horizon: Next Hour (t + 1h)
             </span>
           </div>
         </div>
 
-        {/* Filter Controls: Station & Window */}
-        <div className="flex flex-wrap items-center gap-3">
+        {/* Filter Controls: Station, Window & Export */}
+        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
           {/* Station Selector */}
-          <div>
-            <label className="block text-[11px] font-bold text-[#4A6B56] uppercase tracking-wider mb-1">
-              Monitoring Station
+          <div className="flex-1 sm:flex-initial">
+            <label className="block text-[10px] font-bold text-[#4A6B56] uppercase tracking-wider mb-1">
+              Station
             </label>
             <select
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
-              className="text-xs font-semibold px-3 py-2 rounded-lg bg-[#FAF9F5] border border-[#D1DFD4] text-[#0D2818] cursor-pointer focus:outline-[#1B4332]"
+              className="w-full text-xs font-semibold px-3 py-2 rounded-xl bg-[#FAF9F5] border border-[#D1DFD4] text-[#133E26] cursor-pointer hover:border-[#133E26] focus:outline-[#133E26] transition-colors"
             >
               {stations.map(s => (
                 <option key={s.id} value={s.id}>
@@ -215,36 +266,36 @@ export const AnalyticsView: React.FC = () => {
 
           {/* Window Selector */}
           <div>
-            <label className="block text-[11px] font-bold text-[#4A6B56] uppercase tracking-wider mb-1">
-              Evaluation Window
+            <label className="block text-[10px] font-bold text-[#4A6B56] uppercase tracking-wider mb-1">
+              Window
             </label>
-            <div className="flex items-center space-x-1 bg-[#FAF9F5] p-1 rounded-lg border border-[#D1DFD4]">
+            <div className="flex items-center space-x-1 bg-[#FAF9F5] p-1 rounded-xl border border-[#D1DFD4]">
               <button
                 onClick={() => setSelectedWindow('diwali_7d')}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   selectedWindow === 'diwali_7d'
-                    ? 'bg-[#1B4332] text-white shadow-xs'
-                    : 'text-[#4A6B56] hover:text-[#0D2818]'
+                    ? 'bg-[#133E26] text-white shadow-xs'
+                    : 'text-[#4A6B56] hover:text-[#133E26]'
                 }`}
               >
                 Diwali ±7d
               </button>
               <button
                 onClick={() => setSelectedWindow('diwali_3d')}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   selectedWindow === 'diwali_3d'
-                    ? 'bg-[#1B4332] text-white shadow-xs'
-                    : 'text-[#4A6B56] hover:text-[#0D2818]'
+                    ? 'bg-[#133E26] text-white shadow-xs'
+                    : 'text-[#4A6B56] hover:text-[#133E26]'
                 }`}
               >
                 Diwali ±3d
               </button>
               <button
                 onClick={() => setSelectedWindow('all')}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   selectedWindow === 'all'
-                    ? 'bg-[#1B4332] text-white shadow-xs'
-                    : 'text-[#4A6B56] hover:text-[#0D2818]'
+                    ? 'bg-[#133E26] text-white shadow-xs'
+                    : 'text-[#4A6B56] hover:text-[#133E26]'
                 }`}
               >
                 All 2019
@@ -256,128 +307,196 @@ export const AnalyticsView: React.FC = () => {
           <div className="self-end">
             <button
               onClick={handleExportCSV}
-              className="flex items-center space-x-1.5 px-3 py-2 rounded-lg bg-white border border-[#D1DFD4] text-[#133E26] hover:bg-[#EBF3EA] transition-colors text-xs font-semibold cursor-pointer shadow-xs"
-              title="Download currently displayed series as CSV"
+              className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-white border border-[#D1DFD4] text-[#133E26] hover:bg-[#EBF3EA] transition-colors text-xs font-semibold cursor-pointer shadow-xs"
+              title="Download series as CSV"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5 text-[#133E26]" />
               <span>Export CSV</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* =========================================================
-          SUMMARY SCORECARDS ROW
-          ========================================================= */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {/* DONEZO-STYLE 6-CARD BALANCED KPI GRID */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         
-        <div className="bg-white p-4 rounded-xl border border-[#D1DFD4] shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Records Evaluated</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#1B4332] mt-1">
-            {sampleStats?.count ?? timeseriesData.length}
+        {/* Card 1: Records Evaluated */}
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col justify-between hover:border-[#133E26]/40 transition-colors">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Records Evaluated</span>
+            <div className="w-6 h-6 rounded-full bg-[#FAF9F5] border border-[#D1DFD4] flex items-center justify-center text-[#4A6B56]">
+              <Database className="w-3 h-3" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#2D6A4F]">Hourly time steps</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-[#133E26] tracking-tight">
+              {sampleStats?.count ?? timeseriesData.length}
+            </div>
+            <div className="text-[11px] text-[#4A6B56] mt-1 font-medium flex items-center gap-1">
+              <span>Hourly observations</span>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#D1DFD4] shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Mean Target PM2.5</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#0D2818] mt-1">
-            {sampleStats?.mean ?? (sampleStats?.actual_mean ?? '—')} µg/m³
+        {/* Card 2: Mean Target PM2.5 */}
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col justify-between hover:border-[#133E26]/40 transition-colors">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Mean Target PM2.5</span>
+            <div className="w-6 h-6 rounded-full bg-[#FAF9F5] border border-[#D1DFD4] flex items-center justify-center text-[#4A6B56]">
+              <Activity className="w-3 h-3" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#4A6B56]">Observed average</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-[#133E26] tracking-tight">
+              {sampleStats?.mean ?? '—'} <span className="text-xs font-semibold text-[#4A6B56]">µg/m³</span>
+            </div>
+            <div className="text-[11px] text-[#4A6B56] mt-1 font-medium">
+              Observed interval avg
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#D1DFD4] shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Peak Target PM2.5</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#C62828] mt-1">
-            {sampleStats?.max ?? (sampleStats?.actual_max ?? '—')} µg/m³
+        {/* Card 3: Peak Target PM2.5 */}
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col justify-between hover:border-[#C62828]/40 transition-colors">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#C62828]">Peak Target PM2.5</span>
+            <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-[#C62828]">
+              <Flame className="w-3 h-3 text-[#C62828]" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#C62828]">Diwali maximum</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-[#C62828] tracking-tight">
+              {sampleStats?.max ?? '—'} <span className="text-xs font-semibold text-red-700">µg/m³</span>
+            </div>
+            <div className="text-[11px] text-[#C62828] mt-1 font-medium">
+              Diwali peak spike
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#85A98F] bg-[#EBF3EA]/30 shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#1B4332]">Residual XGBoost MAE</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#1B4332] mt-1">
-            {sampleStats?.residual_xgb_mae ?? '15.96'} µg/m³
+        {/* Card 4 (HERO HIGHLIGHT): Residual XGBoost MAE */}
+        <div className="bg-gradient-to-br from-[#133E26] to-[#0A2617] text-white p-4 rounded-2xl border border-emerald-900 shadow-md flex flex-col justify-between">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-200">Residual XGBoost</span>
+            <div className="w-6 h-6 rounded-full bg-emerald-800/80 border border-emerald-600/50 flex items-center justify-center text-emerald-200">
+              <ArrowUpRight className="w-3 h-3 text-emerald-300" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#2D6A4F] font-semibold">Lowest Absolute Error</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-white tracking-tight">
+              {sampleStats?.residual_xgb_mae ?? '15.96'} <span className="text-xs font-normal text-emerald-200">µg/m³</span>
+            </div>
+            <div className="text-[11px] text-emerald-200 mt-1 font-medium flex items-center gap-1">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>Lowest MAE (Top Model)</span>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#85A98F] bg-[#EBF3EA]/30 shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#1B4332]">Weighted Ensemble RMSE</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#1B4332] mt-1">
-            {sampleStats?.ensemble_rmse ?? '29.90'} µg/m³
+        {/* Card 5: Weighted Ensemble RMSE */}
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col justify-between hover:border-[#133E26]/40 transition-colors">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#133E26]">Weighted Ensemble</span>
+            <div className="w-6 h-6 rounded-full bg-[#EBF3EA] border border-[#D1DFD4] flex items-center justify-center text-[#133E26]">
+              <ArrowUpRight className="w-3 h-3 text-[#133E26]" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#2D6A4F] font-semibold">Lowest Outlier Penalty</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-[#133E26] tracking-tight">
+              {sampleStats?.ensemble_rmse ?? '29.90'} <span className="text-xs font-semibold text-[#4A6B56]">µg/m³</span>
+            </div>
+            <div className="text-[11px] text-[#2D6A4F] mt-1 font-semibold">
+              Lowest RMSE (Robust)
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-[#D1DFD4] shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Persistence MAE</span>
-          <div className="text-xl sm:text-2xl font-extrabold text-[#4A6B56] mt-1">
-            {sampleStats?.persistence_mae ?? '17.46'} µg/m³
+        {/* Card 6: Persistence MAE */}
+        <div className="bg-white p-4 rounded-2xl border border-[#D1DFD4] shadow-xs flex flex-col justify-between hover:border-[#133E26]/40 transition-colors">
+          <div className="flex justify-between items-start">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6B56]">Persistence MAE</span>
+            <div className="w-6 h-6 rounded-full bg-[#FAF9F5] border border-[#D1DFD4] flex items-center justify-center text-[#4A6B56]">
+              <Clock className="w-3 h-3" />
+            </div>
           </div>
-          <span className="text-[11px] text-[#4A6B56]">Naive baseline</span>
+          <div className="mt-3">
+            <div className="text-2xl font-extrabold text-[#4A6B56] tracking-tight">
+              {sampleStats?.persistence_mae ?? '17.46'} <span className="text-xs font-semibold text-[#4A6B56]">µg/m³</span>
+            </div>
+            <div className="text-[11px] text-[#4A6B56] mt-1 font-medium">
+              Naive baseline (t+0)
+            </div>
+          </div>
         </div>
 
       </div>
 
-      {/* =========================================================
-          PRIMARY CHART: ACTUAL VS NEXT-HOUR PREDICTIONS
-          ========================================================= */}
-      <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 pb-3 border-b border-[#EBF3EA]">
+      {/* PRIMARY CHART: ACTUAL VS NEXT-HOUR FORECAST */}
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 pb-3 border-b border-[#EBF3EA]">
           <div>
-            <h3 className="text-base font-bold text-[#0D2818] tracking-tight">
+            <h3 className="text-base font-extrabold text-[#133E26] tracking-tight">
               Chronological Next-Hour Forecast vs Actual PM2.5 ({selectedStationObj?.name || selectedStation})
             </h3>
-            <p className="text-xs text-[#4A6B56]">
-              Target: Ground-truth PM2.5 at exactly t + 1 hour vs ML Model Inferences across {selectedWindow === 'all' ? '2019' : 'Diwali Window'}
+            <p className="text-xs text-[#4A6B56] mt-0.5">
+              Empirical next-hour target (t + 1h) compared against Residual XGBoost and Weighted Ensemble predictions over {selectedWindow === 'all' ? '2019' : 'Diwali Window'}
             </p>
           </div>
-          <div className="flex items-center space-x-2 text-xs">
-            <span className="inline-block w-3 h-3 bg-[#0D2818] rounded-full"></span>
-            <span className="text-[#0D2818] font-bold">Actual Next-Hour</span>
-            <span className="inline-block w-3 h-3 bg-[#2D6A4F] rounded-full ml-2"></span>
-            <span className="text-[#2D6A4F] font-bold">Residual XGBoost</span>
-            <span className="inline-block w-3 h-3 bg-[#4A7C20] rounded-full ml-2"></span>
-            <span className="text-[#4A7C20] font-bold">Weighted Ensemble</span>
+          <div className="flex flex-wrap items-center gap-3 text-xs">
+            <div className="flex items-center space-x-1.5">
+              <span className="w-3 h-1 bg-[#0D2818] rounded-full inline-block"></span>
+              <span className="text-[#0D2818] font-bold">Actual Next-Hour</span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <span className="w-3 h-1 bg-[#2D6A4F] rounded-full inline-block border-b-2 border-dashed border-[#2D6A4F]"></span>
+              <span className="text-[#2D6A4F] font-bold">Residual XGBoost</span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <span className="w-3 h-1 bg-[#0284C7] rounded-full inline-block"></span>
+              <span className="text-[#0284C7] font-bold">Weighted Ensemble</span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <span className="w-3 h-1 bg-[#CBD5E1] rounded-full inline-block"></span>
+              <span className="text-[#64748B] font-medium">Persistence</span>
+            </div>
           </div>
         </div>
 
         {loadingTimeseries ? (
-          <div className="h-80 flex items-center justify-center text-xs text-[#4A6B56]">
-            Loading verified 100k test predictions...
+          <div className="h-[360px] flex items-center justify-center text-xs font-semibold text-[#4A6B56]">
+            <div className="flex items-center space-x-2">
+              <div className="w-4 h-4 border-2 border-[#133E26] border-t-transparent rounded-full animate-spin"></div>
+              <span>Loading verified 100k test predictions...</span>
+            </div>
           </div>
         ) : timeseriesData.length === 0 ? (
-          <div className="h-80 flex items-center justify-center text-xs text-[#4A6B56]">
+          <div className="h-[360px] flex items-center justify-center text-xs text-[#4A6B56]">
             No scored records available for {selectedStation} in {selectedWindow}.
           </div>
         ) : (
-          <div className="h-88 w-full">
+          <div className="w-full h-[360px] min-h-[360px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={timeseriesData} margin={{ top: 10, right: 20, left: 0, bottom: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#EBF3EA" />
+              <LineChart data={timeseriesData} margin={{ top: 12, right: 20, left: 0, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
                 <XAxis 
                   dataKey="datetime" 
-                  tickFormatter={(val) => val.slice(5, 16)} 
-                  stroke="#4A6B56" 
+                  tickFormatter={(val) => val ? val.slice(5, 16) : ''} 
+                  stroke="#64748B" 
                   fontSize={11} 
                   tickMargin={8}
                 />
                 <YAxis 
-                  stroke="#4A6B56" 
+                  stroke="#64748B" 
                   fontSize={11} 
-                  label={{ value: 'PM2.5 (µg/m³)', angle: -90, position: 'insideLeft', offset: 12, fill: '#4A6B56', fontSize: 11 }}
+                  label={{ value: 'PM2.5 (µg/m³)', angle: -90, position: 'insideLeft', offset: 12, fill: '#64748B', fontSize: 11 }}
                 />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', borderRadius: '8px', fontSize: '11px' }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', borderRadius: '12px', fontSize: '11px', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}
                   formatter={(value: any, name: any) => [`${Number(value).toFixed(1)} µg/m³`, name]}
                   labelFormatter={(lbl) => `Timestamp: ${lbl}`}
                 />
-                {/* Reference line at NAAQS 24h standard (60 ug/m3) */}
-                <ReferenceLine y={60} stroke="#4A7C20" strokeDasharray="4 4" label={{ value: 'NAAQS Standard (60)', position: 'insideTopLeft', fill: '#4A7C20', fontSize: 10 }} />
-                {/* Reference line at Severe threshold (250 ug/m3) */}
-                <ReferenceLine y={250} stroke="#C62828" strokeDasharray="4 4" label={{ value: 'Severe Threshold (250)', position: 'insideTopLeft', fill: '#C62828', fontSize: 10 }} />
+                <ReferenceLine y={60} stroke="#10B981" strokeDasharray="4 4" label={{ value: 'NAAQS Standard (60)', position: 'insideTopLeft', fill: '#059669', fontSize: 10, fontWeight: 'bold' }} />
+                <ReferenceLine y={250} stroke="#C62828" strokeDasharray="4 4" label={{ value: 'Severe Threshold (250)', position: 'insideTopLeft', fill: '#C62828', fontSize: 10, fontWeight: 'bold' }} />
                 
                 <Line 
                   type="monotone" 
@@ -393,14 +512,14 @@ export const AnalyticsView: React.FC = () => {
                   name="Residual XGBoost" 
                   stroke="#2D6A4F" 
                   strokeWidth={2} 
-                  strokeDasharray="2 2"
+                  strokeDasharray="4 3"
                   dot={false} 
                 />
                 <Line 
                   type="monotone" 
                   dataKey="weighted_ensemble" 
                   name="Weighted Ensemble" 
-                  stroke="#7A9A18" 
+                  stroke="#0284C7" 
                   strokeWidth={1.8} 
                   dot={false} 
                 />
@@ -408,8 +527,8 @@ export const AnalyticsView: React.FC = () => {
                   type="monotone" 
                   dataKey="persistence" 
                   name="Persistence Baseline" 
-                  stroke="#A0AEC0" 
-                  strokeWidth={1} 
+                  stroke="#CBD5E1" 
+                  strokeWidth={1.2} 
                   dot={false} 
                 />
               </LineChart>
@@ -418,56 +537,62 @@ export const AnalyticsView: React.FC = () => {
         )}
       </div>
 
-      {/* =========================================================
-          ROW: PREDICTION RESIDUAL ERROR DISTRIBUTION & FEATURE IMPORTANCE
-          ========================================================= */}
+      {/* ROW: RESIDUAL ERROR DISTRIBUTION & FEATURE IMPORTANCE */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left: Residual Error Distribution */}
         <div className="lg:col-span-6 bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
           <div className="flex justify-between items-center pb-2 border-b border-[#EBF3EA]">
             <div>
-              <h3 className="text-sm font-bold text-[#0D2818]">
+              <h3 className="text-sm font-bold text-[#133E26]">
                 Hourly Residual Error (Predicted - Actual)
               </h3>
-              <p className="text-xs text-[#4A6B56]">
-                Residual XGBoost errors over consecutive hours. Symmetrical distribution indicates unbiased calibration.
+              <p className="text-xs text-[#4A6B56] mt-0.5">
+                Residual XGBoost errors over consecutive hours. Zero-centered spread indicates calibrated fit.
               </p>
+            </div>
+            <div className="flex items-center space-x-2 text-[10px] font-semibold text-[#4A6B56]">
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#2D6A4F]"></span> Under-prediction</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#C62828]"></span> Over-prediction</span>
             </div>
           </div>
 
-          <div className="h-64 w-full">
+          <div className="w-full h-[260px] min-h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={residualErrors} margin={{ top: 10, right: 10, left: 0, bottom: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#EBF3EA" />
-                <XAxis dataKey="time" stroke="#4A6B56" fontSize={10} interval={10} />
-                <YAxis stroke="#4A6B56" fontSize={10} label={{ value: 'Error (µg/m³)', angle: -90, position: 'insideLeft', fill: '#4A6B56', fontSize: 10 }} />
+              <BarChart data={residualErrors} margin={{ top: 10, right: 10, left: -10, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
+                <XAxis dataKey="time" stroke="#64748B" fontSize={10} interval={8} />
+                <YAxis stroke="#64748B" fontSize={10} label={{ value: 'Error (µg/m³)', angle: -90, position: 'insideLeft', fill: '#64748B', fontSize: 10 }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', fontSize: '11px' }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', borderRadius: '8px', fontSize: '11px' }}
                   formatter={(val: any) => [`${val} µg/m³`, 'Residual (Pred - Act)']}
                 />
                 <ReferenceLine y={0} stroke="#0D2818" strokeWidth={1.5} />
-                <Bar dataKey="error" fill="#2D6A4F" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="error" radius={[2, 2, 0, 0]}>
+                  {residualErrors.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.isPositive ? '#2D6A4F' : '#C62828'} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Right: Feature Importance Breakdown (feature_importance.csv) */}
+        {/* Right: Feature Importance Rankings */}
         <div className="lg:col-span-6 bg-white p-5 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
           <div className="flex justify-between items-center pb-2 border-b border-[#EBF3EA]">
             <div>
-              <h3 className="text-sm font-bold text-[#0D2818]">
+              <h3 className="text-sm font-bold text-[#133E26]">
                 Top Feature Importance Rankings ({importanceModel})
               </h3>
-              <p className="text-xs text-[#4A6B56]">
-                Source: feature_importance.csv. Shows driving factors in next-hour prediction.
+              <p className="text-xs text-[#4A6B56] mt-0.5">
+                Relative feature gain &amp; split contribution in direct next-hour predictions.
               </p>
             </div>
             <select
               value={importanceModel}
               onChange={(e) => setImportanceModel(e.target.value)}
-              className="text-xs font-semibold px-2 py-1 rounded bg-[#FAF9F5] border border-[#D1DFD4] text-[#0D2818]"
+              className="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-[#FAF9F5] border border-[#D1DFD4] text-[#133E26] hover:border-[#133E26] focus:outline-[#133E26]"
             >
               <option value="LightGBM">LightGBM</option>
               <option value="XGBoost">XGBoost</option>
@@ -475,21 +600,21 @@ export const AnalyticsView: React.FC = () => {
             </select>
           </div>
 
-          <div className="h-64 w-full">
+          <div className="w-full h-[260px] min-h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 layout="vertical"
                 data={featureImportance}
-                margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
+                margin={{ top: 5, right: 25, left: 45, bottom: 5 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#EBF3EA" />
-                <XAxis type="number" stroke="#4A6B56" fontSize={10} />
-                <YAxis type="category" dataKey="Feature" stroke="#4A6B56" fontSize={10} width={90} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
+                <XAxis type="number" stroke="#64748B" fontSize={10} />
+                <YAxis type="category" dataKey="Feature" stroke="#64748B" fontSize={10} width={90} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', fontSize: '11px' }}
-                  formatter={(val: any) => [val, 'Gain / Splits']}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', borderRadius: '8px', fontSize: '11px' }}
+                  formatter={(val: any) => [val, 'Feature Gain']}
                 />
-                <Bar dataKey="Importance" fill="#1B4332" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="Importance" fill="#133E26" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -497,22 +622,19 @@ export const AnalyticsView: React.FC = () => {
 
       </div>
 
-      {/* =========================================================
-          SECTION: OFFICIAL MODEL METRICS EVALUATION TABLE
-          (model_metrics.csv & validation_metrics.csv side-by-side)
-          ========================================================= */}
-      <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
+      {/* SECTION: OFFICIAL MODEL METRICS EVALUATION TABLE */}
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 pb-3 border-b border-[#EBF3EA]">
           <div>
-            <h3 className="text-base font-bold text-[#0D2818] tracking-tight">
-              Full Evaluation Matrix: model_metrics.csv vs validation_metrics.csv
+            <h3 className="text-base font-extrabold text-[#133E26] tracking-tight">
+              Model Evaluation Matrix: 2019 Out-of-Sample Test vs 2018 Validation
             </h3>
             <p className="text-xs text-[#4A6B56]">
-              All 6 candidate models across 2019 Out-of-Sample Test ($n=119,055$) and 2018 Validation ($n=110,553$)
+              Performance benchmark of all 6 candidate forecasters across out-of-sample test instances ($n=119,055$).
             </p>
           </div>
-          <div className="flex items-center space-x-2 bg-[#EBF3EA] px-3 py-1.5 rounded-lg border border-[#85A98F] text-xs text-[#1B4332] font-semibold">
-            <span>Ensemble Weights:</span>
+          <div className="flex items-center space-x-2 bg-[#FAF9F5] px-3 py-1.5 rounded-xl border border-[#D1DFD4] text-xs text-[#133E26] font-semibold">
+            <span className="text-[#4A6B56]">Weights:</span>
             <span>RF 0.00 | XGB 0.05 | LGBM 0.45 | Res-XGB 0.50</span>
           </div>
         </div>
@@ -526,7 +648,7 @@ export const AnalyticsView: React.FC = () => {
                 <th className="py-2.5 px-3">Sample (n)</th>
                 <th className="py-2.5 px-3">MAE (µg/m³)</th>
                 <th className="py-2.5 px-3">RMSE (µg/m³)</th>
-                <th className="py-2.5 px-3">Performance Distinction</th>
+                <th className="py-2.5 px-3">Benchmark Result</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#EBF3EA]">
@@ -537,7 +659,7 @@ export const AnalyticsView: React.FC = () => {
                   <tr 
                     key={idx} 
                     className={`hover:bg-[#FAF9F5] transition-colors ${
-                      isBestMae || isBestRmse ? 'bg-[#EBF3EA]/30 font-medium' : ''
+                      isBestMae || isBestRmse ? 'bg-[#EBF3EA]/40 font-medium' : ''
                     }`}
                   >
                     <td className="py-2 px-3 font-semibold text-[#0D2818]">
@@ -549,19 +671,19 @@ export const AnalyticsView: React.FC = () => {
                     <td className="py-2 px-3 font-mono text-[#4A6B56]">
                       {Number(m.n).toLocaleString()}
                     </td>
-                    <td className={`py-2 px-3 font-mono ${isBestMae ? 'text-[#1B4332] font-extrabold text-sm' : 'text-[#0D2818]'}`}>
+                    <td className={`py-2 px-3 font-mono ${isBestMae ? 'text-[#133E26] font-extrabold text-sm' : 'text-[#0D2818]'}`}>
                       {Number(m.MAE).toFixed(3)}
                     </td>
-                    <td className={`py-2 px-3 font-mono ${isBestRmse ? 'text-[#1B4332] font-extrabold text-sm' : 'text-[#0D2818]'}`}>
+                    <td className={`py-2 px-3 font-mono ${isBestRmse ? 'text-[#133E26] font-extrabold text-sm' : 'text-[#0D2818]'}`}>
                       {Number(m.RMSE).toFixed(3)}
                     </td>
                     <td className="py-2 px-3 text-[11px]">
                       {isBestMae ? (
-                        <span className="px-2 py-0.5 rounded bg-[#1B4332] text-white font-bold">Lowest MAE</span>
+                        <span className="px-2 py-0.5 rounded-full bg-[#133E26] text-white font-bold">Lowest MAE</span>
                       ) : isBestRmse ? (
-                        <span className="px-2 py-0.5 rounded bg-[#2D6A4F] text-white font-bold">Lowest RMSE</span>
+                        <span className="px-2 py-0.5 rounded-full bg-[#2D6A4F] text-white font-bold">Lowest RMSE</span>
                       ) : m.Model === 'Persistence' ? (
-                        <span className="text-[#A0AEC0]">Naive baseline</span>
+                        <span className="text-[#94A3B8]">Naive baseline</span>
                       ) : (
                         <span className="text-[#4A6B56]">Competitive benchmark</span>
                       )}
@@ -574,44 +696,42 @@ export const AnalyticsView: React.FC = () => {
         </div>
       </div>
 
-      {/* =========================================================
-          SECTION: UPSTREAM FIRMS SMOKE TRANSPORT LAG CORRELATION
-          ========================================================= */}
-      <div className="bg-white p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
+      {/* SECTION: UPSTREAM FIRMS SMOKE TRANSPORT LAG CORRELATION */}
+      <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D1DFD4] shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 pb-3 border-b border-[#EBF3EA]">
           <div>
             <div className="flex items-center space-x-2">
               <Flame className="w-5 h-5 text-[#C62828]" />
-              <h3 className="text-base font-bold text-[#0D2818] tracking-tight">
-                Upstream Crop Residue Burning Smoke Transport Lag (0h to 72h)
+              <h3 className="text-base font-extrabold text-[#133E26] tracking-tight">
+                Upstream Crop Residue Smoke Transport Lag (0h to 72h)
               </h3>
             </div>
             <p className="text-xs text-[#4A6B56] mt-0.5">
               Empirical correlation between Punjab/Haryana NASA FIRMS active fire pixels and downwind Delhi receptor PM2.5 concentrations over northwestern transport trajectories.
             </p>
           </div>
-          <span className="px-2.5 py-1 bg-[#FAF9F5] rounded-md text-xs font-semibold text-[#4A6B56] border border-[#D1DFD4]">
+          <span className="px-3 py-1 bg-[#FAF9F5] rounded-xl text-xs font-semibold text-[#133E26] border border-[#D1DFD4]">
             Peak Plume Transport Lag: 24 Hours
           </span>
         </div>
 
-        <div className="h-64 w-full">
+        <div className="w-full h-[240px] min-h-[240px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={fireLags} margin={{ top: 10, right: 20, left: 0, bottom: 20 }}>
               <defs>
                 <linearGradient id="lagGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#C62828" stopOpacity="0.4"/>
+                  <stop offset="5%" stopColor="#C62828" stopOpacity="0.3"/>
                   <stop offset="95%" stopColor="#C62828" stopOpacity="0.0"/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#EBF3EA" />
-              <XAxis dataKey="lag_hours" stroke="#4A6B56" fontSize={11} label={{ value: 'Transport Lag (Hours)', position: 'insideBottom', offset: -10, fill: '#4A6B56', fontSize: 11 }} />
-              <YAxis stroke="#4A6B56" fontSize={11} label={{ value: 'Downwind PM2.5 Impact (µg/m³)', angle: -90, position: 'insideLeft', offset: 12, fill: '#4A6B56', fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
+              <XAxis dataKey="lag_hours" stroke="#64748B" fontSize={11} label={{ value: 'Transport Lag (Hours)', position: 'insideBottom', offset: -10, fill: '#64748B', fontSize: 11 }} />
+              <YAxis stroke="#64748B" fontSize={11} label={{ value: 'Downwind PM2.5 Impact (µg/m³)', angle: -90, position: 'insideLeft', offset: 12, fill: '#64748B', fontSize: 11 }} />
               <Tooltip 
-                contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', fontSize: '11px' }}
-                formatter={(val: any, name: any) => [
-                  name === 'downwind_pm25_impact_ugm3' ? `${val} µg/m³` : `${val}`,
-                  name === 'downwind_pm25_impact_ugm3' ? 'Downwind PM2.5 Plume Impact' : 'Correlation Coefficient'
+                contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#D1DFD4', borderRadius: '8px', fontSize: '11px' }}
+                formatter={(val: any) => [
+                  val === 'downwind_pm25_impact_ugm3' ? `${val} µg/m³` : `${val}`,
+                  val === 'downwind_pm25_impact_ugm3' ? 'Downwind PM2.5 Plume Impact' : 'Correlation Coefficient'
                 ]}
               />
               <Area 

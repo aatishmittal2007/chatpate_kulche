@@ -82,7 +82,7 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
       <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Users className="w-5 h-5 text-[#1B4332]" />
+            <Users className="w-5 h-5 text-[#133E26]" />
             <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
               Citizen Air Quality Reports &amp; Ground Verification
             </h2>
@@ -94,7 +94,7 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
 
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded flex items-center gap-1.5 transition-colors shadow-2xs"
+          className="px-4 py-2 bg-[#133E26] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded flex items-center gap-1.5 transition-colors shadow-2xs"
         >
           <Plus className="w-4 h-4" />
           <span>Submit Ground Observation</span>
@@ -106,7 +106,7 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
         {clusters.map((c, i) => (
           <div key={i} className="bg-white p-4 rounded-lg border border-[#D1DFD4] shadow-xs flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-1.5 text-xs text-[#1B4332] font-semibold">
+              <div className="flex items-center gap-1.5 text-xs text-[#133E26] font-semibold">
                 <MapPin className="w-3.5 h-3.5 text-[#2D6A4F]" />
                 <span>Cluster {i + 1}: {c.dominant_category}</span>
               </div>
@@ -161,7 +161,7 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleUpvote(r.id)}
-                  className="px-3 py-1.5 rounded border border-[#D1DFD4] hover:bg-[#EBF3EA] text-xs font-medium text-[#1B4332] flex items-center gap-1.5 transition-colors"
+                  className="px-3 py-1.5 rounded border border-[#D1DFD4] hover:bg-[#EBF3EA] text-xs font-medium text-[#133E26] flex items-center gap-1.5 transition-colors"
                 >
                   <ThumbsUp className="w-3.5 h-3.5" />
                   <span>Verify ({r.upvotes})</span>
@@ -278,7 +278,7 @@ export const CommunityView: React.FC<CommunityViewProps> = ({ stations, selected
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-4 py-2 bg-[#1B4332] text-white rounded hover:bg-[#2D6A4F] font-semibold"
+                  className="px-4 py-2 bg-[#133E26] text-white rounded hover:bg-[#2D6A4F] font-semibold"
                 >
                   {isSubmitting ? 'Scoring & Ingesting...' : 'Submit Report'}
                 </button>

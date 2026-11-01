@@ -46,7 +46,7 @@ export const AutomationView: React.FC = () => {
       <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-[#1B4332]" />
+            <Cpu className="w-5 h-5 text-[#133E26]" />
             <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
               n8n Automation &amp; Workflow Orchestration Engine
             </h2>
@@ -58,7 +58,7 @@ export const AutomationView: React.FC = () => {
 
         <div className="flex items-center gap-3">
           {health && (
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EBF3EA] border border-[#85A98F] text-xs font-semibold text-[#1B4332]">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EBF3EA] border border-[#85A98F] text-xs font-semibold text-[#133E26]">
               <span className="w-2 h-2 rounded-full bg-[#047857] animate-pulse" />
               <span>{health.workflows_verified}/6 JSON Workflows Verified</span>
             </div>
@@ -74,7 +74,7 @@ export const AutomationView: React.FC = () => {
       </div>
 
       {actionMessage && (
-        <div className="p-3 rounded-lg border border-[#85A98F] bg-[#EBF3EA] text-xs text-[#1B4332] font-semibold flex items-center justify-between">
+        <div className="p-3 rounded-lg border border-[#85A98F] bg-[#EBF3EA] text-xs text-[#133E26] font-semibold flex items-center justify-between">
           <span>{actionMessage}</span>
           <button onClick={() => setActionMessage(null)} className="text-xs text-[#4A6B56] hover:text-[#0D2818]">&times;</button>
         </div>
@@ -114,7 +114,7 @@ export const AutomationView: React.FC = () => {
             <button
               onClick={() => handleTrigger(wf.workflow_id)}
               disabled={triggeringId === wf.workflow_id}
-              className="w-full py-2 bg-[#F8FAF8] hover:bg-[#EBF3EA] border border-[#D1DFD4] rounded text-xs font-semibold text-[#1B4332] flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50"
+              className="w-full py-2 bg-[#F8FAF8] hover:bg-[#EBF3EA] border border-[#D1DFD4] rounded text-xs font-semibold text-[#133E26] flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50"
             >
               <Play className={`w-3.5 h-3.5 ${triggeringId === wf.workflow_id ? 'animate-spin' : ''}`} />
               <span>{triggeringId === wf.workflow_id ? 'Executing Pipeline...' : 'Trigger Workflow'}</span>
@@ -130,7 +130,7 @@ export const AutomationView: React.FC = () => {
           <span>Production n8n Architecture &amp; Webhook Endpoints</span>
         </h4>
         <p className="text-[#4A6B56] leading-relaxed">
-          All workflows are saved in <code className="bg-[#EBF3EA] px-1 py-0.5 rounded font-mono text-[#1B4332]">workflows/*.json</code> and conform strictly to n8n node formats.
+          All workflows are saved in <code className="bg-[#EBF3EA] px-1 py-0.5 rounded font-mono text-[#133E26]">workflows/*.json</code> and conform strictly to n8n node formats.
           When running in production, n8n polls CPCB endpoints hourly, calls local machine learning inference, and broadcasts alerts via webhook.
         </p>
       </div>

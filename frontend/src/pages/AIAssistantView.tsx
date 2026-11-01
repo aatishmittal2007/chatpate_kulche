@@ -86,7 +86,7 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
       <div className="bg-white p-5 rounded-lg border border-[#D1DFD4] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Bot className="w-5 h-5 text-[#1B4332]" />
+            <Bot className="w-5 h-5 text-[#133E26]" />
             <h2 className="text-base font-bold text-[#0D2818] tracking-tight">
               Qwen 3.8 Air Quality Intelligence &amp; Prediction Explanation
             </h2>
@@ -111,7 +111,7 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
             onClick={() => setUseReasoning(!useReasoning)}
             className={`px-3 py-1.5 rounded text-xs font-semibold border transition-colors flex items-center gap-1.5 ${
               useReasoning
-                ? 'bg-[#1B4332] text-white border-[#1B4332]'
+                ? 'bg-[#133E26] text-white border-[#1B4332]'
                 : 'bg-[#F8FAF8] text-[#4A6B56] border-[#D1DFD4] hover:bg-[#EBF3EA]'
             }`}
           >
@@ -128,19 +128,19 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
           <div className="p-3 border-b border-[#EBF3EA] bg-[#F8FAF8] flex gap-2 overflow-x-auto text-xs">
             <button
               onClick={() => handleSend("Why is PM2.5 spiking in this neighbourhood on Diwali night?")}
-              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#1B4332] whitespace-nowrap"
+              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#133E26] whitespace-nowrap"
             >
               🔍 Why is PM2.5 spiking?
             </button>
             <button
               onClick={() => handleSend("What precautions should elderly and asthmatic patients take?")}
-              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#1B4332] whitespace-nowrap"
+              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#133E26] whitespace-nowrap"
             >
               ❤️ Vulnerable Health Advisory
             </button>
             <button
               onClick={() => handleSend("Compare firecracker emissions with agricultural stubble smoke.")}
-              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#1B4332] whitespace-nowrap"
+              className="px-2.5 py-1 rounded-full bg-white border border-[#D1DFD4] hover:border-[#85A98F] text-[#133E26] whitespace-nowrap"
             >
               🌾 Crackers vs. Stubble Burning
             </button>
@@ -154,14 +154,14 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
                 className={`flex gap-3 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {m.role === 'assistant' && (
-                  <div className="w-7 h-7 rounded-full bg-[#1B4332] flex items-center justify-center text-white flex-shrink-0 mt-0.5">
+                  <div className="w-7 h-7 rounded-full bg-[#133E26] flex items-center justify-center text-white flex-shrink-0 mt-0.5">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
                 <div
                   className={`p-3.5 rounded-lg max-w-[85%] text-xs leading-relaxed whitespace-pre-wrap ${
                     m.role === 'user'
-                      ? 'bg-[#1B4332] text-white rounded-br-none'
+                      ? 'bg-[#133E26] text-white rounded-br-none'
                       : 'bg-[#F8FAF8] text-[#0D2818] border border-[#D1DFD4] rounded-bl-none shadow-2xs'
                   }`}
                 >
@@ -171,7 +171,7 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
             ))}
             {isLoading && (
               <div className="flex items-center gap-2 text-xs text-[#4A6B56] italic">
-                <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#1B4332]" />
+                <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#133E26]" />
                 <span>Qwen 3.8 synthesizing telemetry and model forecasts...</span>
               </div>
             )}
@@ -190,7 +190,7 @@ export const AIAssistantView: React.FC<AIAssistantViewProps> = ({
             <button
               onClick={() => handleSend()}
               disabled={isLoading || !inputText.trim()}
-              className="px-4 py-2 bg-[#1B4332] text-white rounded hover:bg-[#2D6A4F] text-xs font-semibold flex items-center gap-1.5 disabled:opacity-50 transition-colors"
+              className="px-4 py-2 bg-[#133E26] text-white rounded hover:bg-[#2D6A4F] text-xs font-semibold flex items-center gap-1.5 disabled:opacity-50 transition-colors"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Send</span>
